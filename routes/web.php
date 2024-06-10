@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Company\CompanyLoginController;
 use App\Http\Controllers\Company\CompanyRegisterController;
@@ -53,6 +54,8 @@ Route::group(['prefix' => 'company'], function () {
         Route::get('dashboard', fn() => view('company.dashboard'))
             ->name('company.dashboard');
     });
-});
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
 
 require __DIR__.'/auth.php';
