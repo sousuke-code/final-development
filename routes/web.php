@@ -54,6 +54,7 @@ Route::group(['prefix' => 'company'], function () {
         Route::get('dashboard', fn() => view('company.dashboard'))
             ->name('company.dashboard');
     });
+});
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 

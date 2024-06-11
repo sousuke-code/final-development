@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('user_languages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('programming_language_id')->constrained('programming_languages')->onDelete('cascade');
+            $table->text('content');
+            $table->string('time');
             $table->timestamps();
         });
     }
