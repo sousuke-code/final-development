@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Company\CompanyLoginController;
 use App\Http\Controllers\Company\CompanyRegisterController;
+use App\Http\Controllers\Company\CompanyController;
 
 
 
@@ -55,6 +56,9 @@ Route::group(['prefix' => 'company'], function () {
             ->name('company.dashboard');
     });
 });
+
+Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
