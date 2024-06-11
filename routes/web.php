@@ -65,4 +65,12 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 
+
+// 企業側情報編集画面表示
+Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+// 企業側情報編集
+// Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
+
+
+
 require __DIR__.'/auth.php';
