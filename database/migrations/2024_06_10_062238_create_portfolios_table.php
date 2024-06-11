@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-           
+            $table->string('title', 255);
+            $table->string('url', 255);
+            $table->string('photo', 255);
+            $table->text('description');
             $table->timestamps();
         });
     }
