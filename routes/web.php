@@ -63,4 +63,6 @@ Route::get('/companies', [CompanyController::class, 'index'])->name('companies.i
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 
+Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
+
 require __DIR__.'/auth.php';
