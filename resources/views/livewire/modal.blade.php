@@ -42,7 +42,7 @@
                                 <div class="bg-white py-4 px-6 border-b border-gray-200 flex items-center">
                                     <img src="user_icon.jpg" alt="送信者アイコン" class="w-12 h-12 rounded-full mr-4">
                                     <div>
-                                        <div class="text-lg font-semibold">山田太郎さんからメッセージが届きました</div>
+                                        <div class="text-lg font-semibold">山田太郎3さんからメッセージが届きました</div>
                                         <div class="text-gray-500">12:30</div>
                                     </div>
                                     <img src="message_icon.png" alt="メッセージアイコン" class="w-10 h-10 ml-auto cursor-pointer">
@@ -54,7 +54,7 @@
                                 <div class="bg-white py-4 px-6 border-b border-gray-200 flex items-center">
                                     <img src="user_icon.jpg" alt="送信者アイコン" class="w-12 h-12 rounded-full mr-4">
                                     <div>
-                                        <div class="text-lg font-semibold">山田太郎さんからメッセージが届きました</div>
+                                        <div class="text-lg font-semibold">山田太郎2さんからメッセージが届きました</div>
                                         <div class="text-gray-500">12:30</div>
                                     </div>
                                     <img src="message_icon.png" alt="メッセージアイコン" class="w-10 h-10 ml-auto cursor-pointer">
