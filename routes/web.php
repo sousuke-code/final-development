@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Company\CompanyLoginController;
 use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
+use App\Http\Controllers\GroupChatController;
+use App\Http\Controllers\StudyLogsController;
+
 
 
 
@@ -61,6 +64,19 @@ Route::get('/companies', [CompanyController::class, 'index'])->name('companies.i
 
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+// 勉強記録編集画面
+Route::get('/users/{user}/study_logs', [StudyLogsController::class, 'index'])
+->name('study_logs.index');
+// グループ一覧
+Route::get('/groups', [GroupChatController::class, 'index'])
+->name('groups.index');
+// プロフィール編集画面
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])//多分グループでの括りがないからエラーになる
+->name('users.edit');
+
+
+
 
 
 require __DIR__.'/auth.php';
