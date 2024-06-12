@@ -14,6 +14,7 @@ class UserController extends Controller
         return view('users.mypage');
     }
 
+
     function edit($id)
     {
         $user =  User::find($id);
