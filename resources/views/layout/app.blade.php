@@ -10,6 +10,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         @vite('resources/css/app.css')
+        {{-- モーダル --}}
+        @livewireStyles
     </head>
    <body class="">
     
@@ -49,8 +51,10 @@
   
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </div>
+
+  {{-- モーダル --}}
+  @livewireScripts
   
-    
 @yield('content')
    </body>
 </html>

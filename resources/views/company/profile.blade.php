@@ -39,7 +39,8 @@
 
         <div class="bg-no-repeat bg-white-200 border border-black-300 rounded-xl w-5/12 ml-2 p-6" >
           <p class="text-5xl text-indigo-900">mail box <br><strong>23</strong></p>
-          <a href="" class="bg-orange-300 text-xl text-white underline hover:no-underline inline-block rounded-full mt-12 px-8 py-2"><strong>See messages</strong></a>
+          
+          @livewire('modal')
         </div>
       </div>
 
@@ -87,7 +88,8 @@
       </div>
 
 
-      
+
+  
       
     </div>
   </div>
