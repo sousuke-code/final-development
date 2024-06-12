@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -12,8 +14,11 @@ class UserController extends Controller
         return view('users.mypage');
     }
 
-    function edit()
+
+    function edit($id)
     {
-        return view('users.useredit');
+        $user =  User::find($id);
+
+        return view('users.profileedit',['user'=>$user]);
     }
 }
