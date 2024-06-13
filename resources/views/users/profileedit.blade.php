@@ -1,0 +1,3 @@
+{{ $portfolio['title'] }}
+
+{{ $user['name'] }}
