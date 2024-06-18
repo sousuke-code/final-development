@@ -21,7 +21,15 @@
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">
-                                モーダルの内容をここに記述します。
+                                {{-- モーダルの内容をここに記述します。 --}}
+                                @foreach ($scouts as $scout)
+                                <tr>
+                                    <td>{{ $scout->id }}</td>
+                                    <td>{{ $scout->name }}</td>
+                                    <td>{{ $scout->email }}</td>
+                                    <td>{{ $scout->created_at }}</td>
+                                </tr>
+                                @endforeach
                             </p>
                         </div>
                     </div>
