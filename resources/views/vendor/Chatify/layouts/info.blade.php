@@ -10,7 +10,7 @@
 <p class="info-name">{{ config('chatify.name') }}</p>
 @if($isGroup)
     <div style="max-width: 250px; margin: auto">
-        <h4 style="text-align: center; margin-bottom: 10px; margin-top: 30px; font-weight: normal; font-size: 14px">Users in this group</h4>
+        <h4 style="text-align: center; margin-bottom: 10px; margin-top: 30px; font-weight: normal; font-size: 14px">メンバー</h4>
         <div class="app-scroll users-list">
             @foreach($channel->users as $user)
                 {!! view('Chatify::layouts.listItem', ['get' => 'user_search_item', 'user' => Chatify::getUserWithAvatar($user)])->render() !!}
@@ -21,16 +21,16 @@
 
 <div class="messenger-infoView-btns">
     @if($isGroup && $channel && $channel->owner_id === Auth::user()->id)
-        <a href="#" class="danger delete-group">Delete Group</a>
+        <a href="#" class="danger delete-group">削除</a>
     @elseif($isGroup)
-        <a href="#" class="danger leave-group">Leave Group</a>
+        <a href="#" class="danger leave-group">退会</a>
     @else
-        <a href="#" class="danger delete-conversation">Delete Conversation</a>
+        <a href="#" class="danger delete-conversation">トーク履歴の削除</a>
     @endif
 </div>
 
 {{-- shared photos --}}
 <div class="messenger-infoView-shared">
-    <p class="messenger-title"><span>Shared Photos</span></p>
+    <p class="messenger-title"><span>写真の共有</span></p>
     <div class="shared-photos-list"></div>
 </div>

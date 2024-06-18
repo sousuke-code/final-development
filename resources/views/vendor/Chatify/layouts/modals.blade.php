@@ -5,7 +5,7 @@
             <form id="addGroupForm" action="{{ route('group-chat.create') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="app-modal-header">
-                    Create a Group Channel
+                    グループの新規作成
                 </div>
                 <div class="app-modal-body">
                     {{-- channel avatar --}}
@@ -14,31 +14,31 @@
                     ></div>
                     <p class="upload-avatar-details"></p>
                     <label class="app-btn a-btn-primary update" style="background-color:{{$messengerColor}}">
-                        Upload New
+                        写真を変更する
                         <input class="upload-avatar chatify-d-none" accept="image/*" name="avatar" type="file" />
                     </label>
                     {{-- End channel avatar --}}
 
                     <div class="form-control">
-                        <label class="form-label" for="group_name">Group Name</label>
+                        <label class="form-label" for="group_name">グループ名</label>
                         <input class="form-input" type="text" name="group_name" id="group_name"
-                               placeholder="Enter a name"
+                               placeholder="名前を入力してください"
                                required="required"
                         />
                     </div>
                     <div class="form-control">
-                        <label class="form-label" for="search">Select user(s) to the group</label>
-                        <input class="form-input user-search" type="text" name="search" placeholder="Search"/>
+                        <label class="form-label" for="search">メンバーの追加</label>
+                        <input class="form-input user-search" type="text" name="search" placeholder="探す"/>
                     </div>
                     <div class="search-records app-scroll users-list"></div>
                     <div style="margin-top: 1rem; margin-bottom: 2rem">
-                        <label class="form-label">Added Users</label>
+                        <label class="form-label">追加したユーザー</label>
                         <div class="added-users app-scroll users-list"></div>
                     </div>
                 </div>
                 <div class="app-modal-footer">
-                    <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
-                    <input type="submit" class="app-btn a-btn-success update" value="Save Changes" />
+                    <a href="javascript:void(0)" class="app-btn cancel">キャンセル</a>
+                    <input type="submit" class="app-btn a-btn-success update" value="保存する" />
                 </div>
             </form>
         </div>
@@ -49,11 +49,11 @@
 <div class="app-modal" data-name="delete-group">
     <div class="app-modal-container">
           <div class="app-modal-card" data-name="delete-group" data-modal='0'>
-            <div class="app-modal-header">Are you sure you want to delete this group?</div>
-            <div class="app-modal-body">You can not undo this action</div>
+            <div class="app-modal-header">本当に削除しますか？</div>
+            <div class="app-modal-body">あなたはこの操作を行うことができません</div>
             <div class="app-modal-footer">
-                <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
-                <a href="javascript:void(0)" class="app-btn a-btn-danger delete">Delete</a>
+                <a href="javascript:void(0)" class="app-btn cancel">キャンセル</a>
+                <a href="javascript:void(0)" class="app-btn a-btn-danger delete">削除</a>
             </div>
         </div>
     </div>
@@ -63,11 +63,11 @@
 <div class="app-modal" data-name="leave-group">
     <div class="app-modal-container">
           <div class="app-modal-card" data-name="leave-group" data-modal='0'>
-            <div class="app-modal-header">Are you sure you want to leave this group?</div>
-            <div class="app-modal-body">You can not undo this action</div>
+            <div class="app-modal-header">本当にこのグループを退会しますか？</div>
+            <div class="app-modal-body">あなたはこの操作を行うことができません</div>
             <div class="app-modal-footer">
-                <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
-                <a href="javascript:void(0)" class="app-btn a-btn-danger delete">Leave</a>
+                <a href="javascript:void(0)" class="app-btn cancel">キャンセル</a>
+                <a href="javascript:void(0)" class="app-btn a-btn-danger delete">退会</a>
             </div>
         </div>
     </div>
@@ -83,11 +83,11 @@
   <div class="app-modal" data-name="delete">
       <div class="app-modal-container">
           <div class="app-modal-card" data-name="delete" data-modal='0'>
-              <div class="app-modal-header">Are you sure you want to delete this?</div>
-              <div class="app-modal-body">You can not undo this action</div>
+              <div class="app-modal-header">本当に削除しますか？</div>
+              <div class="app-modal-body">あなたはこの操作を実行することができません</div>
               <div class="app-modal-footer">
-                  <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
-                  <a href="javascript:void(0)" class="app-btn a-btn-danger delete">Delete</a>
+                  <a href="javascript:void(0)" class="app-btn cancel">キャンセル</a>
+                  <a href="javascript:void(0)" class="app-btn a-btn-danger delete">削除</a>
               </div>
           </div>
       </div>
@@ -99,7 +99,7 @@
               <div class="app-modal-header"></div>
               <div class="app-modal-body"></div>
               <div class="app-modal-footer">
-                  <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
+                  <a href="javascript:void(0)" class="app-btn cancel">キャンセル</a>
               </div>
           </div>
       </div>
