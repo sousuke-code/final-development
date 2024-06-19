@@ -1,31 +1,32 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Scout extends Model
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    use HasFactory;
+
+    // テーブル名を指定する場合（省略可能）
+    protected $table = 'scouts';
+
+    // ここにモデルのプロパティやリレーションを定義する
+    protected $fillable = [
+        'user_id',
+        'company_id',
+        'condition',
+    ];
+
+    // リレーションの例
+    public function user()
     {
-        Schema::create('scouts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('company_id')->constrained()->onDelete('cascade');
-            $table->boolean('condition');
-            $table->timestamps();
-        });
+        return $this->belongsTo(User::class);
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function company()
     {
-        Schema::dropIfExists('scouts');
+        return $this->belongsTo(Company::class);
     }
-};
-
+}

@@ -17,11 +17,20 @@
                 <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            モーダルタイトル
+                            offer
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">
-                                モーダルの内容をここに記述します。
+                                @foreach ($scouts as $scout)
+                                <tr>
+                                    <td class="border px-4 py-2">{{ $scout->company->name }}からオファーがありました。</td>
+                                    <td class="border px-4 py-2">{{ $scout->created_at }}</td>
+                                    <td class="border px-4 py-2">
+                                        <button class="bg-green-500 text-white px-4 py-2 rounded">承認</button>
+                                        <button class="bg-red-500 text-white px-4 py-2 rounded">削除</button>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </p>
                         </div>
                     </div>
