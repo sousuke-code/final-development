@@ -12,7 +12,11 @@ class ScoutViewModal extends Component
     public function mount()
     {
         // scoutテーブルからデータを取得
-        $this->scouts = Scout::all();
+        // $this->scouts = Scout::all();
+
+        // scoutテーブルからデータを取得し、関連するcompanyも取得
+        $this->scouts = Scout::with('company')->get();
+
     }
 
     public function render()
