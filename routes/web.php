@@ -8,6 +8,14 @@ use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\GroupChatController;
 use App\Http\Controllers\StudyLogsController;
+use App\Http\Controllers\Auth\GitHubController;
+use App\Http\Controllers\GitHubProfileController;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+
 
 
 
@@ -86,6 +94,17 @@ Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edi
 Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
 // 企業側情報編集
 // Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
+
+//GitHub認証連携
+
+Route::get('/oauth/github/redirect', [GitHubController::class, 'redirect'])->name('oauth.github.redirect');
+
+Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
+
+
+
+
+Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
 
 
 
