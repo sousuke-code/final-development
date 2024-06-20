@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('photo', 255)->nullable();
             $table->text('bio')->nullable();
             $table->string('password');
+            $table->string('github_id')->nullable();
+            $table->string('github_token')->nullable();
+            $table->string('github_refresh_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
