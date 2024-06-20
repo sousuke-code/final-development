@@ -14,8 +14,8 @@
             </td>
             {{-- center side --}}
             <td>
-                <p>メモ<span>自分</span></p>
-                <span></span>
+                <p>Saved Messages <span>You</span></p>
+                <span>Save messages secretly</span>
             </td>
         </tr>
     </table>
