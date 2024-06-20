@@ -8,6 +8,7 @@ use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\GroupChatController;
 use App\Http\Controllers\StudyLogsController;
+use App\Http\Controllers\UserLanguages;
 
 
 
@@ -87,6 +88,11 @@ Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name(
 // 企業側情報編集
 // Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/study_logs', [StudyLogsController::class, 'index'])->name('study_logs.index');
+    Route::post('/study_logs/start', [StudyLogsController::class, 'start'])->name('study_logs.start');
+    Route::post('/study_logs/stop', [StudyLogsController::class, 'stop'])->name('study_logs.stop');
+});
 
 
 require __DIR__.'/auth.php';

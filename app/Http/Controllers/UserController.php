@@ -22,3 +22,4 @@ class UserController extends Controller
         return view('users.profileedit',['user'=>$user]);
     }
 }
+
