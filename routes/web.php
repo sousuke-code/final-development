@@ -8,7 +8,12 @@ use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\GroupChatController;
 use App\Http\Controllers\StudyLogsController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\UserLanguages;
+=======
+use Carbon\Carbon;
+
+>>>>>>> Stashed changes
 
 
 
@@ -73,7 +78,7 @@ Route::get('/users/{user}/study_logs', [StudyLogsController::class, 'index'])
 Route::get('/groups', [GroupChatController::class, 'index'])
 ->name('groups.index');
 // プロフィール編集画面
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])//多分グループでの括りがないからエラーになる
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 ->name('users.edit');
 
 
@@ -96,3 +101,4 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
+

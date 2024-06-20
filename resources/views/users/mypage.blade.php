@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+<<<<<<< Updated upstream
 <section class="text-gray-600 body-font relative" style="min-height: vh ;">
     
     <div class="container px-5 py-24 mx-auto flex flex-wrap items-center justify-center">
@@ -16,6 +17,97 @@
                     {{ session('message') }}
                 </div>
             @endif
+=======
+    <h1><?php $user = Auth::user(); ?> </h1>
+    <h1 style="margin-left: 20px;">{{ $user->name }}のマイページ</h1>
+    <section class="text-gray-600 body-font relative" style="min-height: 90vh ;">
+        <div class="p-4 sm:w-1/4 w-1/2">
+            <div class="flex flex-col items-center">
+                <div class="hover:text-blue-500 -ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" class="hover:text-blue-500 -ml-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+                    </svg>
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <div class="flex"> 
+            <div id="target" ></div>
+            <div id="chart"></div> 
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            (function() {
+                'use strict';
+
+                // パッケージのロード
+                google.charts.load('current', {packages: ['corechart']});
+                // コールバックの登録
+                google.charts.setOnLoadCallback(drawChart);
+
+            // コールバック関数の実装
+                function drawChart() {
+                    // データの準備
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Love');
+                    data.addColumn('number', 'Votes');
+                    data.addRow(['Lravel', 30]);
+                    data.addRow(['Javascript', 20]);
+                    data.addRow(['C', 10]);
+                    
+
+                    // オプションの準備
+                    var options = {
+                        title: '勉強内容',
+                        width: 400,
+                        height: 200,
+                        is3D: true
+                    };
+
+                    var data2 = google.visualization.arrayToDataTable([
+            ['曜日', '時間', { role: 'style' }],
+            ['月曜日', 2., "madblue"],
+            ['火曜日', 5, 'madblue'],            // RGB value
+            ['水曜日', 2, 'madblue'],            // English color name
+            ['木曜日', 4, 'madblue'],
+            ['金曜日', 6, 'madblue' ], // CSS-style declaration
+            ['土曜日', , 'madblue'],
+            ['日曜日', 6, 'madblue' ], // CSS-style declaration
+        ]);
+                    var options2 = {
+                title: 'あなたの学習時間',
+                width: 1000,
+                height: 600,
+                bar: { groupWidth: '60%' },
+                legend: { position: 'center' }
+    //             vAxis: {
+    //     ticks: [0, 4, 8, 12, 16 , 20]
+    // }
+            };
+
+
+                // 描画用インスタンスの生成および描画メソッドの呼び出し
+                    var chart = new google.visualization.PieChart(document.getElementById('target'));
+                    chart.draw(data, options);
+
+                    var chart2 = new google.visualization.BarChart(document.getElementById('chart'));
+                    chart2.draw(data2, options2);
+                }
+            })();
+        </script>
+        </div>
+    </div>
+    
+        <div class="flex flex-wrap -m-4 text-center absolute bottom-10 w-full">
+            <div class="p-4 sm:w-1/4 w-1/2">
+                <div class="flex flex-col items-center ">
+                    <div id="icon-button">
+                        <script src="date.js"><script>
+                        <svg id="icon-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 mb-2 hover:text-blue-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                        </svg>
+>>>>>>> Stashed changes
 
             @if (session('error'))
                 <div class="bg-red-500 text-white p-2 mb-2">
