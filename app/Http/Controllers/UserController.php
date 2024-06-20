@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Portfolios;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 use Carbon\Carbon;
+
 
 
 class UserController extends Controller
@@ -18,31 +21,37 @@ class UserController extends Controller
 
     function edit($id)
     {
-        $user =  User::find($id);
+        // $user = User::all();
 
-        return view('users.profileedit',['user'=>$user]);
+        $user =  Auth::user();
+        $userId = auth()->user()->id;
+        $portfolio = Portfolios::where('user_id', $userId)->first();
+        // $portfolio = Portfolios::all();
+
+        // ポートフォリオのIDを指定します
+        // $portfolioId = 1; // ここにポートフォリオのIDを指定してください
+        // $portfolioId = $id;
+        // find()メソッドを使用してポートフォリオのレコードを取得します
+        // $portfolio = Portfolios::find($portfolioId);
+
+        // 取得したポートフォリオの情報を確認します
+        // if ($portfolio) {
+        //     echo "ポートフォリオのタイトル: " . $portfolio->title . "<br>";
+        //     echo "ポートフォリオのURL: " . $portfolio->url . "<br>";
+        //     echo "ポートフォリオの写真: " . $portfolio->photo . "<br>";
+        //     echo "ポートフォリオの説明: " . $portfolio->description . "<br>";
+        //     echo "作成日時: " . $portfolio->created_at . "<br>";
+        //     echo "更新日時: " . $portfolio->updated_at . "<br>";
+        // } else {
+        //     echo "指定したIDのポートフォリオが見つかりませんでした。";
+        // }
+        
+        // dd($portfolio);
+        // dd($user);
+        // return view('users.profileedit',['user'=>$user]);
+        return view('users.profileedit',['portfolio'=>$portfolio, 'user'=> $user]);
     }
 
 
 }
 
-<<<<<<< Updated upstream
-=======
-
-// 1.開始日時を設定
-$startnow = new Carbon('');
-
-// 2.終了日時を設定
-$endnow = new Carbon('');
-
-// 3.差分の秒数を計算
-$diffInSeconds = $startnow->diffInSeconds($endnow);
-
-// 4.秒数から時間、分、秒を計算
-$hours = floor($diffInSeconds / 3600);
-$minutes = floor(($diffInSeconds % 3600) / 60);
-
-// 5.結果を表示
-echo "" . $hours . "時間" . $minutes . "分" ;
-
->>>>>>> Stashed changes

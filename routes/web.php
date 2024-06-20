@@ -8,12 +8,14 @@ use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\GroupChatController;
 use App\Http\Controllers\StudyLogsController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\UserLanguages;
-=======
-use Carbon\Carbon;
+use App\Http\Controllers\Auth\GitHubController;
+use App\Http\Controllers\GitHubProfileController;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
->>>>>>> Stashed changes
 
 
 
@@ -98,6 +100,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/study_logs/start', [StudyLogsController::class, 'start'])->name('study_logs.start');
     Route::post('/study_logs/stop', [StudyLogsController::class, 'stop'])->name('study_logs.stop');
 });
+//GitHub認証連携
+
+Route::get('/oauth/github/redirect', [GitHubController::class, 'redirect'])->name('oauth.github.redirect');
+
+Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
+
+
+
+
+Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
+
 
 
 require __DIR__.'/auth.php';
