@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Company\CompanyLoginController;
 use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
+
+use Illuminate\Http\Request;
+=======
 use App\Http\Controllers\GroupChatController;
 use App\Http\Controllers\StudyLogsController;
 use App\Http\Controllers\UserLanguages;
@@ -92,9 +95,14 @@ Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edi
 
 
 // 企業側情報編集画面表示
-Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+Route::get('/companies/{id}/edit',[CompanyController::class,'edit'])->name('companies.edit');
 // 企業側情報編集
-// Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
+Route::put('/companies/{id}/update',[CompanyController::class,'update'])->name('companies.update');
+
+
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/study_logs', [StudyLogsController::class, 'index'])->name('study_logs.index');
