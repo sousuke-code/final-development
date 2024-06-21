@@ -55,12 +55,9 @@ class CompanyController extends Controller
         if (request('image')) {
             $filename = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('public/images', $filename);
-            $company->image = 'images/'.$filename;
-            // $inputs[‘image’]=request(‘image’)->storeAs('public/images',$filename);
-
-            // $company->create($inputs);
-
+            $company->image = 'images/'.$filename;// 画像の場所を保存
         }
+        
         // 保存
         $company->save();
         // 更新後にリダイレクト
