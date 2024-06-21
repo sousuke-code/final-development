@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.profile-image {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.languages, .learning-languages, .career {
+    margin-bottom: 15px;
+}
+
+.languages label, .learning-languages label, .career label {
+    font-weight: bold;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
