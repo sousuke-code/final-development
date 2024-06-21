@@ -14,6 +14,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ChatController;
 
 
 
@@ -105,6 +106,13 @@ Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
 
 
 Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
+
+
+Route::middleware('auth')->group(function() {
+    Route::get('/chat',[ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/{chat}',[ChatController::class, 'show'])->name('chat.show')->name('chat.show');
+    Route::get('/chat/{chat}/messages', [ChatController::class, 'storeMessage'])->name('chat.store');
+});
 
 
 
