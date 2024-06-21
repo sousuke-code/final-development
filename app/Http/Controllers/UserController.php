@@ -25,7 +25,7 @@ class UserController extends Controller
 
         $user =  Auth::user();
         $userId = auth()->user()->id;
-        $portfolio = Portfolios::where('user_id', $userId)->first();
+        $portfolios = Portfolios::where('user_id', $userId)->get();
         // $portfolio = Portfolios::all();
 
         // ポートフォリオのIDを指定します
@@ -49,7 +49,9 @@ class UserController extends Controller
         // dd($portfolio);
         // dd($user);
         // return view('users.profileedit',['user'=>$user]);
-        return view('users.profileedit',['portfolio'=>$portfolio, 'user'=> $user]);
+
+        // dd($portfolios);
+        return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
 
