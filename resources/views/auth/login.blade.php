@@ -42,6 +42,9 @@
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
+
+            <x-oauth-github-link>
+            </x-oauth-github-link>
         </div>
     </form>
 </x-guest-layout>

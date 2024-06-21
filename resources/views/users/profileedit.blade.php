@@ -1,3 +1,4 @@
+
 @extends('layout.app')
 
 @section('content')
@@ -164,3 +165,7 @@
    </section>
 </div>
 @endsection
+
+{{ $portfolio['title'] }}
+
+{{ $user['name'] }}
