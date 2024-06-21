@@ -15,6 +15,20 @@ class Company extends Authenticatable
         'name',
         'email',
         'password',
+        'company_id',
+        'introduction_text',
+        'employee',
+        'age',
+        'year',
+        'capital',
+        'salary',
+        'working',
+        'welfare',
+        'holiday',
+        'access',
+        'address',
+        'body',
+
     ];
 
     protected $hidden = [
@@ -25,4 +39,5 @@ class Company extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
 }

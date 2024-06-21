@@ -21,8 +21,23 @@ return new class extends Migration
             $table->string('introduction_text')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table  ->string('image')->nullable();
+            $table ->string('employees')->nullable();
+            $table ->string('age')->nullable();
+            $table ->string('year')->nullable();
+            $table ->string('capital')->nullable();
+            $table ->string('salary')->nullable();
+            $table ->string('holiday')->nullable();
+            $table ->string('welfare')->nullable();
+            $table ->string('company')->nullable();
+            $table ->string('access')->nullable();
+            $table ->string('body')->nullable();
+            $table ->string('address')->nullable();
+            $table ->string('working')->nullable();
         });
     }
+
+
 
     /**
      * Reverse the migrations.
