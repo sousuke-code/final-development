@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Portfolios;
 use Illuminate\Http\Request;
 use App\Models\User;
-// use App\Models\Portfolio;
-use Illuminate\Support\Facades\Auth;
+
+use Carbon\Carbon;
+
 
 
 class UserController extends Controller
@@ -50,4 +51,7 @@ class UserController extends Controller
         // return view('users.profileedit',['user'=>$user]);
         return view('users.profileedit',['portfolio'=>$portfolio, 'user'=> $user]);
     }
+
+
 }
+

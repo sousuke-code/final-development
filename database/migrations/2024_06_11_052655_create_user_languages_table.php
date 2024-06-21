@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('user_languages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('programming_language_id')->constrained('programming_languages')->onDelete('cascade');
-            $table->text('content');
-            $table->string('time');
+            $table->foreignId('programming_language_id')->nullable()->constrained('programming_languages')->onDelete('cascade');
+            $table->text('content')->nullable();
+            $table->timestamp('time');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
             $table->timestamps();
         });
     }
