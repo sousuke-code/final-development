@@ -6,7 +6,23 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Company\CompanyLoginController;
 use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
+
 use Illuminate\Http\Request;
+=======
+use App\Http\Controllers\GroupChatController;
+use App\Http\Controllers\StudyLogsController;
+use App\Http\Controllers\UserLanguages;
+use App\Http\Controllers\Auth\GitHubController;
+use App\Http\Controllers\GitHubProfileController;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ChatController;
+
+
+
+
 
 
 /*
@@ -61,6 +77,19 @@ Route::get('/companies', [CompanyController::class, 'index'])->name('companies.i
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
+// 勉強記録編集画面
+Route::get('/users/{user}/study_logs', [StudyLogsController::class, 'index'])
+->name('study_logs.index');
+// グループ一覧
+Route::get('/groups', [GroupChatController::class, 'index'])
+->name('groups.index');
+// プロフィール編集画面
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+->name('users.edit');
+
+
+
+
 
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 
@@ -75,6 +104,30 @@ Route::put('/companies/{id}/update',[CompanyController::class,'update'])->name('
 
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/study_logs', [StudyLogsController::class, 'index'])->name('study_logs.index');
+    Route::post('/study_logs/start', [StudyLogsController::class, 'start'])->name('study_logs.start');
+    Route::post('/study_logs/stop', [StudyLogsController::class, 'stop'])->name('study_logs.stop');
+});
+//GitHub認証連携
+
+Route::get('/oauth/github/redirect', [GitHubController::class, 'redirect'])->name('oauth.github.redirect');
+
+Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
+
+
+
+
+Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
+
+
+Route::middleware('auth')->group(function() {
+    Route::get('/chat',[ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/{chat}',[ChatController::class, 'show'])->name('chat.show')->name('chat.show');
+    Route::get('/chat/{chat}/messages', [ChatController::class, 'storeMessage'])->name('chat.store');
+});
+
 
 
 require __DIR__.'/auth.php';
+
