@@ -66,6 +66,6 @@ class StudyLogsController extends Controller
     {
         $studyLogs = UserLanguages::where('user_id', Auth::id())->get();
 
-        return view('study_logs.index', compact('studyLogs'));
+        return view('users.studylog', compact('studyLogs'));
     }
 }
