@@ -8,7 +8,7 @@ use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\Company\CompanyController;
 
 use Illuminate\Http\Request;
-=======
+
 use App\Http\Controllers\GroupChatController;
 use App\Http\Controllers\StudyLogsController;
 use App\Http\Controllers\UserLanguages;
@@ -69,6 +69,9 @@ Route::group(['prefix' => 'company'], function () {
         // ダッシュボード
         Route::get('dashboard', fn() => view('company.dashboard'))
             ->name('company.dashboard');
+
+
+       
     });
 });
 
@@ -120,12 +123,16 @@ Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
 
 Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
 
-
-Route::middleware('auth')->group(function() {
-    Route::get('/chat',[ChatController::class, 'index'])->name('chat.index');
-    Route::get('/chat/{chat}',[ChatController::class, 'show'])->name('chat.show')->name('chat.show');
-    Route::get('/chat/{chat}/messages', [ChatController::class, 'storeMessage'])->name('chat.store');
+Route::middleware(['auth'])->group(function() { 
+    Route::get('/users/chat', [ChatController::class,'loadUserChats']);
+    Route::post('/users/chat/messages', [ChatController::class, 'Userstore']);
 });
+
+Route::middleware(['auth:company'])->group(function () {
+    Route::get('/companies/chat', [ChatController::class,'loadCompanyChats']);
+    Route::post('/companies/chat/messages', [ChatController::class, 'Companystore']);
+});
+
 
 
 

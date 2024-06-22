@@ -34,7 +34,9 @@
               <div class="container mx-auto p-4">
                 <h1 class="font-semibold text-2xl">使用言語割合</h1>
                 <div class="w-full md:w-3/4 lg:w-1/2 mx-auto">
-                  <canvas id="languageChart" class="w-full h-64 md:h-96 lg:h-128"></canvas>
+                  <canvas id="languageChart" class="w-full h-64 md:h-96 lg:h-128">
+                    
+                  </canvas>
               </div>
             </div>
 
@@ -64,7 +66,7 @@
                   'rgba(75, 192, 192, 0.2)',
                   'rgba(153, 102, 255, 0.2)',
                   'rgba(255, 159, 64, 0.2)',
-                  // 追加の色を必要に応じて追加
+               
               ],
               borderColor: [
                   'rgba(255, 99, 132, 1)',
@@ -73,7 +75,7 @@
                   'rgba(75, 192, 192, 1)',
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)',
-                  // 追加の色を必要に応じて追加
+             
               ],
               borderWidth: 1
           }]
