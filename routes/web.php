@@ -73,9 +73,13 @@ Route::group(['prefix' => 'company'], function () {
 });
 
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
-// 検索機能
 
-Route::get('/companies/serch', [CompanyController::class, 'search'])->name('companies.search');
+
+// 検索機能
+Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
+// スカウト送信機能
+Route::post('/companies/send-scout/{userId}', [CompanyController::class, 'sendScout'])->name('companies.sendScout');
+
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 

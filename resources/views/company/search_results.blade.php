@@ -11,6 +11,10 @@
         <ul>
             @foreach ($users as $user)
                 <li>{{ $user->name }}</li>
+                <form action="{{ route('companies.sendScout', ['userId' => $user->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit">スカウトを送る</button>
+                </form>
             @endforeach
         </ul>
     @endif
