@@ -8,7 +8,7 @@
   <div class="flex flex-row pt-24 px-10 pb-4">
     <div class="w-2/12 mr-6">
       <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 flex hover:bg-gray-100">
-        <a href=""  class="flex items-center">
+        <a href="{{ route('companies.edit', ['id' =>  Auth()->id()]) }}"  class="flex items-center">
           <p class="font-semibold ">
             マイページ編集
           </p>

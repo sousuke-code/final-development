@@ -75,11 +75,7 @@ Route::group(['prefix' => 'company'], function () {
     });
 });
 
-Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
 
-
-// 検索機能
-Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
 // スカウト送信機能
 Route::post('/companies/send-scout/{userId}', [CompanyController::class, 'sendScout'])->name('companies.sendScout');
 
@@ -103,10 +99,7 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 
 
-// 企業側情報編集画面表示
-Route::get('/companies/{id}/edit',[CompanyController::class,'edit'])->name('companies.edit');
-// 企業側情報編集
-Route::put('/companies/{id}/update',[CompanyController::class,'update'])->name('companies.update');
+
 
 
 
@@ -117,6 +110,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/study_logs', [StudyLogsController::class, 'index'])->name('study_logs.index');
     Route::post('/study_logs/start', [StudyLogsController::class, 'start'])->name('study_logs.start');
     Route::post('/study_logs/stop', [StudyLogsController::class, 'stop'])->name('study_logs.stop');
+      
 });
 //GitHub認証連携
 
@@ -137,6 +131,13 @@ Route::middleware(['auth'])->group(function() {
 Route::middleware(['auth:company'])->group(function () {
     Route::get('/companies/chat', [ChatController::class,'loadCompanyChats']);
     Route::post('/companies/chat/messages', [ChatController::class, 'Companystore']);
+      // 企業側情報編集画面表示
+      Route::get('/companies/{id}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+      // 企業側情報編集
+      Route::put('/companies/{id}/update',[CompanyController::class,'update'])->name('companies.update');
+      Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+      // 検索機能
+      Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
 });
 
 
