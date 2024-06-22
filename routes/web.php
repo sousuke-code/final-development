@@ -73,7 +73,9 @@ Route::group(['prefix' => 'company'], function () {
 });
 
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+// 検索機能
 
+Route::get('/companies/serch', [CompanyController::class, 'search'])->name('companies.search');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
@@ -126,7 +128,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/chat/{chat}',[ChatController::class, 'show'])->name('chat.show')->name('chat.show');
     Route::get('/chat/{chat}/messages', [ChatController::class, 'storeMessage'])->name('chat.store');
 });
-
 
 
 require __DIR__.'/auth.php';

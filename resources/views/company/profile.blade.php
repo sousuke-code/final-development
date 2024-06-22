@@ -48,43 +48,38 @@
         <div class="bg-white rounded-xl shadow-lg px-6 py-4 w-full">
 
           <h1 class="text-3xl text-indigo-900 text-center mt-4 mb-10"><strong>エンジニア検索</strong></h1>
-          <form class=" flex-col md:flex-row gap-3">
-            {{-- <div class="flex">
-                <input type="text" placeholder="Search for the tool you like"
-              class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-sky-500 focus:outline-none focus:border-sky-500"
-              >
-                <button type="submit" class="bg-sky-500 text-white rounded-r px-2 md:px-3 py-0 md:py-1">search</button>
-            </div> --}}
+          <form action="{{ route('companies.search') }}" method="GET">
+            <!-- フォームの内容 -->
             <div class="w-full items-center justify-center flex">
-              <select id="言語の選択" name="pricingType"
-              class="w-4/5  h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-              <option value="All" selected="">HTML</option>
-              <option value="All" selected="">CSS</option>
-              <option value="All" selected="">Java</option>
-              <option value="Freemium">JavaScript</option>
-              <option value="Free">PHP</option>
-              <option value="Paid">Python</option>
-              <option value="Paid">C</option>
-              <option value="Paid">C++</option>
-              <option value="Paid">C#</option>
-            </select>
+              <select id="言語の選択" name="language"
+              class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
+                  <option value="All" selected>HTML</option>
+                  <option value="CSS">CSS</option>
+                  <option value="Java">Java</option>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="PHP">PHP</option>
+                  <option value="Python">Python</option>
+                  <option value="C">C</option>
+                  <option value="C++">C++</option>
+                  <option value="C#">C#</option>
+              </select>
           </div>
 
-          <div class="w-full mt-5 flex items-center justify-center">
-            <select id="言語の選択" name="pricingType"
+{{-- 邪魔だったのでいったんコメントアウトしました↓ --}}
+
+          {{-- <div class="w-full mt-5 flex items-center justify-center">
+            <select id="ポートフォリオの選択" name="portfolio"
             class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-indigo-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-            <option value="All" selected="">ポートフォリオ有</option>
-            <option value="Freemium">ポートフォリオ無</option>
-          </select>
-          </div>
-
-
+                <option value="All" selected>ポートフォリオ有</option>
+                <option value="Freemium">ポートフォリオ無</option>
+            </select>
+        </div>
+           --}}
           <div class="text-center mt-5">
             <button type="submit" class="bg-sky-500 text-white rounded-xl px-2 md:px-3 py-0 md:py-1 h-10">検索する</button>
           </div>
-        </form>
-          
-        </div>
+          </form>
+           
       </div>
 
 
@@ -94,4 +89,6 @@
     </div>
   </div>
 </div>
+
+
 @endsection

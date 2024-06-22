@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+
+use App\Models\User;
+use App\Models\UserLanguages;
+use App\Models\ProgrammingLanguage;
+
 // use App\Http\Controllers\Company\{image};
+
 
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('company.profile');
     }
@@ -21,7 +27,27 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         return view('company.edit', ['company' => $company]);
     }
+    public function search(Request $request)
+    {
+        $language = $request->input('language');
 
+
+        $query = User::query();
+
+        if ($language !== 'All') {
+            $query->whereHas('userLanguages', function($q) use ($language) {
+                $q->where('programming_language', $language);
+            });
+        }
+
+      
+
+
+        $users = $query->get();
+
+        return view('company.search_results', ['users' => $users]);
+
+      
     public function update(Request $request, $id)
     {
         // バリデーションルール
@@ -62,5 +88,9 @@ class CompanyController extends Controller
         $company->save();
         // 更新後にリダイレクト
         return redirect()->route('companies.index')->with('success', '更新が成功しました。');
+
     }
 }
+
+    
+

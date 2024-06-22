@@ -24,4 +24,15 @@ class UserLanguages extends Model
         'end_time'=>'datetime',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function programming_languages()
+    {
+        return $this->belongsTo(programming_languages::class);
+    }
+
+    
+
 }
