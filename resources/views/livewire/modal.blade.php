@@ -4,6 +4,7 @@
     <button wire:click="openModal()" type="button" class="bg-orange-300 text-xl text-white underline hover:no-underline inline-block rounded-full mt-12 px-8 py-2">
         See messages
     </button>
+    
     @if($showModal)
     <div class="fixed z-10 inset-0 overflow-y-auto">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">

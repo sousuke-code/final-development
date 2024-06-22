@@ -45,4 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // 検索機能
+    public function userLanguages()
+    {
+        return $this->hasMany(UserLanguages::class);
+    }
 }
+
