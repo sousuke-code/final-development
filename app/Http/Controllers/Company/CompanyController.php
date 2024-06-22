@@ -46,7 +46,7 @@ class CompanyController extends Controller
         $users = $query->get();
 
         return view('company.search_results', ['users' => $users]);
-
+    }
       
     public function update(Request $request, $id)
     {
