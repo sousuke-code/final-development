@@ -9,7 +9,7 @@ use App\Models\Company;
 use App\Models\User;
 use App\Models\UserLanguages;
 use App\Models\ProgrammingLanguage;
-
+use App\Models\Scout;
 // use App\Http\Controllers\Company\{image};
 
 
@@ -27,6 +27,7 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         return view('company.edit', ['company' => $company]);
     }
+    // ユーザー検索
     public function search(Request $request)
     {
         $language = $request->input('language');
@@ -39,15 +40,26 @@ class CompanyController extends Controller
                 $q->where('programming_language', $language);
             });
         }
-
-      
-
-
         $users = $query->get();
 
         return view('company.search_results', ['users' => $users]);
     }
       
+// スカウト送信
+public function sendScout(Request $request, $userId)
+{
+    $companyId = auth()->user()->id; // 現在ログインしている会社の ID を取得
+    $condition = true; // 仮の条件として true を設定　後で三択にします
+
+    Scout::create([
+        'user_id' => $userId,
+        'company_id' => $companyId,
+        'condition' => $condition,
+    ]);
+
+    return redirect()->back()->with('success', 'スカウトを送信しました。');
+}
+
     public function update(Request $request, $id)
     {
         // バリデーションルール
