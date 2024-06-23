@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model; 
 use Carbon\Carbon;
+use App\Models\ProgrammingLanguage; // エラー出たので完全な名前空間を指定しました。
 
 class UserLanguages extends Model
 {
@@ -28,9 +29,10 @@ class UserLanguages extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function programming_languages()
+
+    public function programmingLanguage()
     {
-        return $this->belongsTo(programming_languages::class);
+        return $this->belongsTo(ProgrammingLanguage::class);
     }
 
     

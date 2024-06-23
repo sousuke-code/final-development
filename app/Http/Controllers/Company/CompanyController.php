@@ -30,21 +30,22 @@ class CompanyController extends Controller
     // ユーザー検索
     public function search(Request $request)
     {
-        $language = $request->input('language');
-
-
+        $languageName = $request->input('language');
+    
         $query = User::query();
-
-        if ($language !== 'All') {
-            $query->whereHas('userLanguages', function($q) use ($language) {
-                $q->where('programming_language', $language);
+    
+        if ($languageName !== 'All') {
+            $query->whereHas('userLanguages', function($q) use ($languageName) {
+                $q->whereHas('programmingLanguage', function($q) use ($languageName) {
+                    $q->where('name', $languageName);
+                });
             });
         }
+    
         $users = $query->get();
-
+    
         return view('company.search_results', ['users' => $users]);
     }
-      
 // スカウト送信
 public function sendScout(Request $request, $userId)
 {
