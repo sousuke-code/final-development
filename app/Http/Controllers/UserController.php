@@ -56,7 +56,7 @@ class UserController extends Controller
         return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
-// スカウトの拒否
+// スカウトの拒否d
 public function erase(Scout $scout)
 {
     $scout->delete();
