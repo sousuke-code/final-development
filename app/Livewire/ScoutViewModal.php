@@ -25,7 +25,9 @@ class ScoutViewModal extends Component
         $userId = auth()->id();
 
         // ユーザーIDに紐づくスカウトデータを取得
-        $this->scouts = Scout::where('user_id', $userId)->get();
+        $this->scouts = Scout::where('user_id', $userId)
+        ->where('condition', false)
+        ->get();
 
         return view('livewire.scout-view-modal', [
             'scouts' => $this->scouts,
