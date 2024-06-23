@@ -51,7 +51,7 @@ class CompanyController extends Controller
 public function sendScout(Request $request, $userId)
 {
     $companyId =Auth::guard('company')->id(); // 現在ログインしている会社の ID を取得
-    $condition = true; // 仮の条件として true を設定　後で三択にします
+    $condition = false; // 仮の条件として true を設定　後で三択にします
 
     Scout::create([
         'user_id' => $userId,
