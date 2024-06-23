@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\Scout;
+
 
 
 
@@ -54,6 +56,12 @@ class UserController extends Controller
         return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
+// スカウトの拒否
+public function erase(Scout $scout)
+{
+    $scout->delete();
 
+    return redirect()->back()->with('success', 'スカウトを削除しました。');
+}
 }
 

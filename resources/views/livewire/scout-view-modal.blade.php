@@ -27,7 +27,12 @@
                                     <td class="border px-4 py-2">{{ $scout->created_at }}</td>
                                     <td class="border px-4 py-2">
                                         <button class="bg-green-500 text-white px-4 py-2 rounded">承認</button>
-                                        <button class="bg-red-500 text-white px-4 py-2 rounded">削除</button>
+                                        {{-- <button class="bg-red-500 text-white px-4 py-2 rounded">削除</button> --}}
+                                        <form id="delete-form-{{ $scout->id }}" action="{{ route('scouts.destroy', $scout->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">削除</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <br>

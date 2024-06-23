@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserLanguages;
 use App\Models\ProgrammingLanguage;
 use App\Models\Scout;
+use Illuminate\Support\Facades\Auth;
 // use App\Http\Controllers\Company\{image};
 
 
@@ -49,7 +50,7 @@ class CompanyController extends Controller
 // スカウト送信
 public function sendScout(Request $request, $userId)
 {
-    $companyId = auth()->user()->id; // 現在ログインしている会社の ID を取得
+    $companyId =Auth::guard('company')->id(); // 現在ログインしている会社の ID を取得
     $condition = true; // 仮の条件として true を設定　後で三択にします
 
     Scout::create([
@@ -103,6 +104,7 @@ public function sendScout(Request $request, $userId)
         return redirect()->route('companies.index')->with('success', '更新が成功しました。');
 
     }
+
 }
 
     

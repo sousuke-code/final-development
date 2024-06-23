@@ -68,10 +68,7 @@ Route::group(['prefix' => 'company'], function () {
     Route::middleware(['auth:company'])->group(function () {
         // ダッシュボード
         Route::get('dashboard', fn() => view('company.dashboard'))
-            ->name('company.dashboard');
-
-
-       
+            ->name('company.dashboard');       
     });
 });
 
@@ -91,6 +88,9 @@ Route::get('/groups', [GroupChatController::class, 'index'])
 // プロフィール編集画面
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 ->name('users.edit');
+// スカウト認証,拒否
+Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
+->name('scouts.destroy');
 
 
 
