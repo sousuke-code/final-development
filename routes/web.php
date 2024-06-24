@@ -70,10 +70,7 @@ Route::group(['prefix' => 'company'], function () {
     Route::middleware(['auth:company'])->group(function () {
         // ダッシュボード
         Route::get('dashboard', fn() => view('company.dashboard'))
-            ->name('company.dashboard');
-
-
-       
+            ->name('company.dashboard');       
     });
 });
 
@@ -93,6 +90,11 @@ Route::get('/groups', [GroupChatController::class, 'index'])
 // プロフィール編集画面
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 ->name('users.edit');
+// スカウト認証
+Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.approve');
+// スカウト拒否
+Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
+->name('scouts.destroy');
 
 
 
@@ -132,8 +134,10 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/users/chat/messages', [ChatController::class, 'Userstore']);
 });
 Route::middleware(['auth:company'])->group(function () {
-     Route::get('/companies/chat', [ChatController::class,'loadCompanyChats']);
-     Route::post('/companies/chat/messages', [ChatController::class, 'Companystore']);
+
+    Route::get('/companies/chat/', [ChatController::class,'loadCompanyChats'])->name('companies.chat');
+    Route::post('/companies/chat/messages', [ChatController::class, 'Companystore']);
+
       // 企業側情報編集画面表示
       Route::get('/companies/{id}/edit',[CompanyController::class,'edit'])->name('companies.edit');
       // 企業側情報編集
@@ -142,8 +146,8 @@ Route::middleware(['auth:company'])->group(function () {
       // 検索機能
       Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
 });
-
-
+    // ユーザーから送られてきたメッセージ企業側から通知
+// Route::get('/companies', [ChatController::class, 'index'])->name('chats.index');
 
 require __DIR__.'/auth.php';
 

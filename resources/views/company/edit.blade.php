@@ -17,21 +17,19 @@
                                 @csrf
                                 @method('PUT')
 
-
-
                                     {{-- 企業画像の表示 --}}
-                                    <div class="mt-4">
-                                        @if ($company->image)
-                                            <img src="{{ asset('storage/' . $company->image) }}" alt="企業画像" class="rounded-md object-cover" style="width: 200px; height: 200px;">
-                                        @else
-                                            <img src="/images/avatar-default.svg" alt="デフォルト画像" class="rounded-md object-cover" style="width: 200px; height: 200px;">
-                                        @endif
-                                    </div>
-                                                                    <div class="flex flex-col">
+                              {{-- 企業画像の表示 --}}
+                              <div class="mt-4">
+                                @foreach ($company->images ?? [] as $image)
+                                    <img src="{{ asset('storage/' . $image) }}" alt="企業画像" class="rounded-md object-cover mb-4" style="width: 200px; height: 200px;">
+                                @endforeach
+                            </div>
 
-                                    <input type="file" id="image" name="image" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400">
-
-                                </div>
+                            {{-- 複数画像アップロード --}}
+                            <div class="flex flex-col">
+                                <label for="images" class="leading-loose">企業画像</label>
+                                <input type="file" id="images" name="images[]" multiple class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400">
+                            </div>
                                 
                                 {{-- 企業名 --}}
                                 <div class="flex flex-col">

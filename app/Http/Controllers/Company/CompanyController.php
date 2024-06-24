@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserLanguages;
 use App\Models\ProgrammingLanguage;
 use App\Models\Scout;
+use Illuminate\Support\Facades\Auth;
 // use App\Http\Controllers\Company\{image};
 
 
@@ -30,26 +31,27 @@ class CompanyController extends Controller
     // ユーザー検索
     public function search(Request $request)
     {
-        $language = $request->input('language');
-
-
+        $languageName = $request->input('language');
+    
         $query = User::query();
-
-        if ($language !== 'All') {
-            $query->whereHas('userLanguages', function($q) use ($language) {
-                $q->where('programming_language', $language);
+    
+        if ($languageName !== 'All') {
+            $query->whereHas('userLanguages', function($q) use ($languageName) {
+                $q->whereHas('programmingLanguage', function($q) use ($languageName) {
+                    $q->where('name', $languageName);
+                });
             });
         }
+    
         $users = $query->get();
-
+    
         return view('company.search_results', ['users' => $users]);
     }
-      
 // スカウト送信
 public function sendScout(Request $request, $userId)
 {
-    $companyId = auth()->user()->id; // 現在ログインしている会社の ID を取得
-    $condition = true; // 仮の条件として true を設定　後で三択にします
+    $companyId =Auth::guard('company')->id(); // 現在ログインしている会社の ID を取得
+    $condition = false; // 仮の条件として true を設定　後で三択にします
 
     Scout::create([
         'user_id' => $userId,
@@ -68,7 +70,7 @@ public function sendScout(Request $request, $userId)
             'address' => 'max:255',
             'email' => 'max:255',
             'body' => 'max:500',
-            'image' => 'image|max:1024', 
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'employees' => 'max:255',
             'age' => 'max:50',
             'year' => 'max:50',
@@ -85,24 +87,29 @@ public function sendScout(Request $request, $userId)
         // 該当する会社を取得
         $company = Company::findOrFail($id);
 
-
         // フォームのデータを会社モデルに適用
         $company->update($request->all());
 
-        // 画像ファイルの保存処理
-        if (request('image')) {
-            $filename = $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('public/images', $filename);
-            $company->image = 'images/'.$filename;// 画像の場所を保存
-        }
+        if ($request->hasFile('images')) {
+            $images = [];
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('images', 'public');
+                $images[] = $path;
+            }
+            $company->images = $images;
+        }  
         
+
+
+    // その他の設定}
         // 保存
         $company->save();
         // 更新後にリダイレクト
-        return redirect()->route('companies.index')->with('success', '更新が成功しました。');
+        return redirect()->route('companies.index',['id' => $company->id])->with('success', '更新が成功しました。');
 
     }
+
 }
 
-    
+
 
