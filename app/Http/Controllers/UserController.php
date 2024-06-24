@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Models\programming_languages;
+use App\Models\ProgrammingLanguage;
 use App\Models\UserLanguages;
 use App\Models\Scout;
 
@@ -28,7 +28,7 @@ class UserController extends Controller
         ->first();
 
 
-       $languages = programming_languages::all();
+       $languages = ProgrammingLanguage::all();
 
         return view('users.mypage', compact('languages','activeLog'));
     }

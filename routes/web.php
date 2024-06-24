@@ -118,8 +118,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/study_logs/daily_study', [StudyLogsController::class, 'getDailyStudyData'])->name('study_logs.daily_study');
       
 });
-//GitHub認証連携
 
+
+//GitHub認証連携
 Route::get('/oauth/github/redirect', [GitHubController::class, 'redirect'])->name('oauth.github.redirect');
 
 Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);

@@ -30,14 +30,11 @@ class UserLanguages extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function programmingLanguage()
-    {
-        return $this->belongsTo(ProgrammingLanguage::class);
-    }
+  
 
     public function programmingLanguage()
     {
-        return $this->belongsTo(programming_languages::class, 'programming_language_id');
+        return $this->belongsTo(ProgrammingLanguage::class, 'programming_language_id');
         
     }
 

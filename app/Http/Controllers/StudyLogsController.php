@@ -19,7 +19,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StudyLog;
 use App\Models\UserLanguages;
-use App\Models\programming_languages;
 use Carbon\Carbon;
 use App\Models\User;
 

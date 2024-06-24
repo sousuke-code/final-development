@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserLanguages;
 use App\Models\ProgrammingLanguage;
 use App\Models\Scout;
+
 use Illuminate\Support\Facades\Auth;
 // use App\Http\Controllers\Company\{image};
 
@@ -19,7 +20,13 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
-        return view('company.profile');
+        $id =Auth::guard('company')->id();
+        $company = Company::find($id);
+
+
+        $languages = ProgrammingLanguage::all();
+
+        return view('company.profile', compact('languages', 'company'));
     }
 
     // 編集画面の表示
@@ -31,17 +38,17 @@ class CompanyController extends Controller
     // ユーザー検索
     public function search(Request $request)
     {
-        $languageName = $request->input('language');
+        $languageId = $request->input('language');
     
         $query = User::query();
     
-        if ($languageName !== 'All') {
-            $query->whereHas('userLanguages', function($q) use ($languageName) {
-                $q->whereHas('programmingLanguage', function($q) use ($languageName) {
-                    $q->where('name', $languageName);
+  
+            $query->whereHas('userLanguages', function($q) use ($languageId) {
+                $q->whereHas('programmingLanguage', function($q) use ($languageId) {
+                    $q->where('id', $languageId);
                 });
             });
-        }
+
     
         $users = $query->get();
     
