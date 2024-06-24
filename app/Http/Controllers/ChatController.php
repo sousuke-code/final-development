@@ -42,21 +42,12 @@ class ChatController extends Controller
     }
 
     public function loadCompanyChats(Request $request){
-        // リクエストからidパラメータを取得
         $userId = $request->input('id');
-        
-        // ユーザー情報を取得
         $user = User::find($userId);
-        
-        // 認証された会社のIDを取得
         $companyId = Auth::guard('company')->id();
-    
-        // チャットメッセージを取得
         $chats = Chat::where('user_id', $userId)
                      ->where('company_id', $companyId)
                      ->get();
-    
-        // ビューにデータを渡して表示
         return view('company-chat-page', compact('chats', 'userId', 'companyId', 'user'));
     }
     
