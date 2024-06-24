@@ -1,9 +1,6 @@
 <div>
     {{-- Because she competes with no one, no one can compete with her. --}}
 
-    <button wire:click="openModal()" type="button" class="bg-orange-300 text-xl text-white underline hover:no-underline inline-block rounded-full mt-12 px-8 py-2">
-        See messages
-    </button>
     
     @if($showModal)
     <div class="fixed z-10 inset-0 overflow-y-auto">

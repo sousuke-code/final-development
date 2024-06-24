@@ -40,6 +40,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -107,9 +109,11 @@ Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edi
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/study_logs', [StudyLogsController::class, 'index'])->name('study_logs.index');
-    Route::post('/study_logs/start', [StudyLogsController::class, 'start'])->name('study_logs.start');
-    Route::post('/study_logs/stop', [StudyLogsController::class, 'stop'])->name('study_logs.stop');
+  
+ 
+    Route::post('/study_logs/toggle', [StudyLogsController::class, 'toggle'])->name('study_logs.toggle');
+    Route::get('/study_logs/chart', [StudyLogsController::class, 'getStudyTimes'])->name('study_logs.study_times');
+    Route::post('/study_logs/daily_study', [StudyLogsController::class, 'getDailyStudyData'])->name('study_logs.daily_study');
       
 });
 //GitHub認証連携
@@ -127,10 +131,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/users/chat', [ChatController::class,'loadUserChats']);
     Route::post('/users/chat/messages', [ChatController::class, 'Userstore']);
 });
-
 Route::middleware(['auth:company'])->group(function () {
-    Route::get('/companies/chat', [ChatController::class,'loadCompanyChats']);
-    Route::post('/companies/chat/messages', [ChatController::class, 'Companystore']);
+     Route::get('/companies/chat', [ChatController::class,'loadCompanyChats']);
+     Route::post('/companies/chat/messages', [ChatController::class, 'Companystore']);
       // 企業側情報編集画面表示
       Route::get('/companies/{id}/edit',[CompanyController::class,'edit'])->name('companies.edit');
       // 企業側情報編集

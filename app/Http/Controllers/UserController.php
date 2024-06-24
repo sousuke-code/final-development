@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\programming_languages;
+use App\Models\UserLanguages;
 
 
 
@@ -14,8 +16,20 @@ class UserController extends Controller
 {
     //
     function index()
+
+
     {
-        return view('users.mypage');
+
+
+        $user = Auth::user();
+        $activeLog = UserLanguages::where('user_id', $user->id)
+        ->whereNull('end_time')
+        ->first();
+
+
+       $languages = programming_languages::all();
+
+        return view('users.mypage', compact('languages','activeLog'));
     }
 
 
@@ -54,6 +68,8 @@ class UserController extends Controller
         return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
+
+    
 
 }
 
