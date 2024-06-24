@@ -131,7 +131,7 @@ Route::middleware(['auth'])->group(function() {
 });
 
 Route::middleware(['auth:company'])->group(function () {
-    Route::get('/companies/chat', [ChatController::class,'loadCompanyChats']);
+    Route::get('/companies/chat/', [ChatController::class,'loadCompanyChats'])->name('companies.chat');
     Route::post('/companies/chat/messages', [ChatController::class, 'Companystore']);
       // 企業側情報編集画面表示
       Route::get('/companies/{id}/edit',[CompanyController::class,'edit'])->name('companies.edit');
@@ -141,8 +141,8 @@ Route::middleware(['auth:company'])->group(function () {
       // 検索機能
       Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
 });
-
-
+    // ユーザーから送られてきたメッセージ企業側から通知
+// Route::get('/companies', [ChatController::class, 'index'])->name('chats.index');
 
 require __DIR__.'/auth.php';
 

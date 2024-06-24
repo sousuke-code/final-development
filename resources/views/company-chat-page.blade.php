@@ -9,7 +9,8 @@
     <div class="flex-1" id="chat">
         <!-- Chat Header -->
         <header class="bg-white p-4 text-gray-700">
-            <h1 class="text-2xl font-semibold">Alice</h1>
+          
+            <h1 class="text-2xl font-semibold">{{ $user -> name }}</h1>
         </header>
         
         <!-- Chat Messages -->
@@ -43,6 +44,7 @@
         
           
           <div id="messages"></div>
+
            
            
            

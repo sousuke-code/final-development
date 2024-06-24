@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Chat;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
@@ -40,16 +41,25 @@ class ChatController extends Controller
         return response()->json(['status' => 'メッセージが正常に保存されました！']);
     }
 
-
-    public function loadCompanyChats(){
-        $userId = 1;
+    public function loadCompanyChats(Request $request){
+        // リクエストからidパラメータを取得
+        $userId = $request->input('id');
+        
+        // ユーザー情報を取得
+        $user = User::find($userId);
+        
+        // 認証された会社のIDを取得
         $companyId = Auth::guard('company')->id();
-
+    
+        // チャットメッセージを取得
         $chats = Chat::where('user_id', $userId)
                      ->where('company_id', $companyId)
                      ->get();
-        return view('company-chat-page', compact('chats', 'userId', 'companyId'));
+    
+        // ビューにデータを渡して表示
+        return view('company-chat-page', compact('chats', 'userId', 'companyId', 'user'));
     }
+    
 
 
     public function Companystore(Request $request)
@@ -57,7 +67,7 @@ class ChatController extends Controller
         $validatedData = $request->validate([
             'message' => 'required|string|max:255',
             'user_id' => 'required|integer',
-            ''
+            
         ]);
 
         $message = Chat::create([
@@ -70,5 +80,7 @@ class ChatController extends Controller
 
         return response()->json(['status' => 'メッセージが正常に保存されました！']);
     }
+
+
 
 }

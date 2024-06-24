@@ -17,4 +17,8 @@ class Chat extends Model
         'sender_type',
         'receiver_type',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
