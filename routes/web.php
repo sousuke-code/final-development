@@ -97,10 +97,6 @@ Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.app
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 
- // 検索機能
- Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
-
-
 // プロフィール更新
 Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
