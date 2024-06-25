@@ -52,59 +52,37 @@
                                 {{-- 給与 --}}
                                 <div class="flex flex-col">
                                     <label for="salary" class="leading-loose">給与</label>
-                                    {{-- <input type="text" id="salary" name="salary" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('salary', $company->salary) }}"> --}}
-                                    <select name="salary">
-                                        <option value="300~499万">300~499万</option>
-                                        <option value="500~699万">500~699万</option>
-                                        <option value="700~899万">700~899万</option>
-                                        <option value="900~">900~</option>
-                                    <select>
+                                    <input type="text" id="salary" name="salary" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('salary', $company->salary) }}">
                                 </div>
                                 
                                 {{-- 勤務時間 --}}
                                 <div class="flex flex-col">
                                     <label for="working" class="leading-loose">勤務時間</label>
                                     <input type="text" id="working" name="working" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('working', $company->working) }}">
-                                
                                 </div>
                                 
                                 {{-- 休日 --}}
                                 <div class="flex flex-col">
                                     <label for="holiday" class="leading-loose">休日</label>
-                                    {{-- <input type="text" id="holiday" name="holiday" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('holiday', $company->holiday) }}"> --}}
-                                    <select name="holiday">
-                                        <option value="完全週休二日">完全週休二日</option>
-                                        <option value="二日">二日</option>
-                                    <select>
-
+                                    <input type="text" id="holiday" name="holiday" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('holiday', $company->holiday) }}">
                                 </div>
                                 
                                 {{-- 福利厚生 --}}
                                 <div class="flex flex-col">
                                     <label for="welfare" class="leading-loose">福利厚生</label>
-                                    {{-- <input type="text" id="welfare" name="welfare" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('welfare', $company->welfare) }}"> --}}
-                                    <select name="welfare" id="">
-                                        <option value="あり">あり</option>
-                                        <option value="なし">なし</option>
-                                    </select>
+                                    <input type="text" id="welfare" name="welfare" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('welfare', $company->welfare) }}">
                                 </div>
                                 
                                 {{-- 従業員数 --}}
                                 <div class="flex flex-col">
                                     <label for="employees" class="leading-loose">従業員数</label>
                                     <input type="text" id="employees" name="employees" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('employees', $company->employees) }}">
-                                    
                                 </div>
                                 
                                 {{-- 従業員年齢層 --}}
                                 <div class="flex flex-col">
                                     <label for="age" class="leading-loose">従業員年齢層</label>
-                                    {{-- <input type="text" id="age" name="age" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('age', $company->age) }}"> --}}
-                                    <select name="age" id="">
-                                        <option value="20代">20代</option>
-                                        <option value="30代">30代</option>
-                                        <option value="40代">40代</option>
-                                    </select>
+                                    <input type="text" id="age" name="age" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('age', $company->age) }}">
                                 </div>
                                 
                                 {{-- アクセス --}}
