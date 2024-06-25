@@ -79,15 +79,20 @@ Route::get('/users/{user}/study_logs', [StudyLogsController::class, 'index'])
 // グループ一覧
 Route::get('/groups', [GroupChatController::class, 'index'])
 ->name('groups.index');
+
+// プロフィール詳細画面
+Route::get('/users/{user}', [UserController::class, 'show'])
+->name('users.show');
+
 // プロフィール編集画面
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 ->name('users.edit');
 
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
 
 
-
-
-Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 
 
 // 企業側情報編集画面表示
