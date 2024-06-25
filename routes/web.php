@@ -19,11 +19,7 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatController;
-
-
-
-
-
+use App\Http\Controllers\ScoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,6 +142,7 @@ Route::middleware(['auth:company'])->group(function () {
       Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
       // 検索機能
       Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
+      Route::get('/companies/list', [ScoutController::class, 'index'])->name('companies.list');
 });
     // ユーザーから送られてきたメッセージ企業側から通知
 // Route::get('/companies', [ChatController::class, 'index'])->name('chats.index');
