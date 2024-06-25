@@ -83,6 +83,11 @@ Route::get('/users/{user}/study_logs', [StudyLogsController::class, 'index'])
 // グループ一覧
 Route::get('/groups', [GroupChatController::class, 'index'])
 ->name('groups.index');
+
+// プロフィール詳細画面
+Route::get('/users/{user}', [UserController::class, 'show'])
+->name('users.show');
+
 // プロフィール編集画面
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 ->name('users.edit');
@@ -92,9 +97,17 @@ Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.app
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
 
 
 
+
+// 企業側情報編集画面表示
+Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+// 企業側情報編集
+// Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
 
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 
