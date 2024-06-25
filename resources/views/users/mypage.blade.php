@@ -167,8 +167,36 @@
        });
     });
 
+
+    
+    
+
     
 </script>
+<div class="flex flex-row h-70 mt-6">
+    <div class="bg-white rounded-xl shadow-lg px-6 py-4 w-full">
 
+      <h1 class="text-3xl text-indigo-900 text-center mt-4 mb-10"><strong>エンジニア検索</strong></h1>
+      <form action="{{ route('users.search.for.user') }}" method="GET">
+        <!-- フォームの内容 -->
+        <div class="w-full items-center justify-center flex">
+   
+
+          <select id="language" name="language"
+          class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider" >
+          @foreach ($languages as $language)
+          <option value="{{ $language->id }}" >
+              {{ $language->name }}
+          </option>
+          @endforeach
+       </select>
+          
+
+      </div>
+
+
+      <div class="text-center mt-5">
+        <button type="submit" class="bg-sky-500 text-white rounded-xl px-2 md:px-3 py-0 md:py-1 h-10">検索する</button>
+      </div>
 
 @endsection
