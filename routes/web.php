@@ -110,6 +110,18 @@ Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 
 
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
+
+ // 検索機能
+ Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
+
+
+
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
 
 
 

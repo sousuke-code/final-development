@@ -86,7 +86,6 @@
                                     <select name="welfare" id="">
                                         <option value="あり">あり</option>
                                         <option value="なし">なし</option>
-
                                     </select>
                                 </div>
                                 
