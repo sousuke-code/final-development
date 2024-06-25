@@ -20,6 +20,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
+use App\Http\Controllers\PortfolioController;
+use App\Models\Portfolios;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +76,11 @@ Route::group(['prefix' => 'company'], function () {
 // スカウト送信機能
 Route::post('/companies/send-scout/{userId}', [CompanyController::class, 'sendScout'])->name('companies.sendScout');
 
+Route::get('/users/portfolio/edit',[PortfolioController::class, 'edit'])->name('portofolio.edit');
+
+Route::put('/users/portfolio/store', [PortfolioController::class, 'update'])
+->name('portofolio.store');
+
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
@@ -91,15 +98,17 @@ Route::get('/users/{user}', [UserController::class, 'show'])
 // プロフィール編集画面
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 ->name('users.edit');
+
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
+
 // スカウト認証
 Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.approve');
 // スカウト拒否
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 
-// プロフィール更新
-Route::put('/users/{user}', [UserController::class, 'update'])
-->name('users.update');
 
 
 
