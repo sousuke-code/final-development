@@ -91,6 +91,24 @@ public function approve($id)
     // 成功したらリダイレクトやレスポンスを返すなど適切な処理を行う
     return redirect()->back()->with('success', 'Scoutの承認が完了しました');
 }
+// 検索機能
+public function search(Request $request)
+    {
+        $languageId = $request->input('language');
+    
+        $query = User::query();
+    
+  
+            $query->whereHas('userLanguages', function($q) use ($languageId) {
+                $q->whereHas('programmingLanguage', function($q) use ($languageId) {
+                    $q->where('id', $languageId);
+                });
+            });
 
+    
+        $users = $query->get();
+    
+        return view('users.search_results', ['users' => $users]);
+    }
 }
 

@@ -95,7 +95,8 @@ Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.app
 // スカウト拒否
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
-
+ // 検索機能
+ Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
 
 
 
