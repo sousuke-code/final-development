@@ -11,11 +11,10 @@ class Portfolios extends Model
 
     
     protected $fillable = [
-        'name',
-        'email',
-        'bio',
-        'languages',
-        'learning_languages',
-        'career',
+        'user_id',
+        'title',
+        'url',
+        'description',
+        'photo',
     ];
 }

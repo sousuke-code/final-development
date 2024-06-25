@@ -20,6 +20,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
+use App\Http\Controllers\PortfolioController;
+use App\Models\Portfolios;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +76,11 @@ Route::group(['prefix' => 'company'], function () {
 // スカウト送信機能
 Route::post('/companies/send-scout/{userId}', [CompanyController::class, 'sendScout'])->name('companies.sendScout');
 
+Route::get('/users/portfolio/edit',[PortfolioController::class, 'edit'])->name('portofolio.edit');
+
+Route::put('/users/portfolio/store', [PortfolioController::class, 'update'])
+->name('portofolio.store');
+
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
@@ -91,20 +98,25 @@ Route::get('/users/{user}', [UserController::class, 'show'])
 // プロフィール編集画面
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 ->name('users.edit');
+
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
+
 // スカウト認証
 Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.approve');
 // スカウト拒否
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 
-<<<<<<< HEAD
+
 // プロフィール更新
 Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
-=======
+
  // 検索機能
  Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
->>>>>>> parent of 23dbcb1 (Revert "Merge branch 'main' into soya-017")
+
 
 
 // プロフィール更新
@@ -112,11 +124,7 @@ Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
 
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> parent of 23dbcb1 (Revert "Merge branch 'main' into soya-017")
 // 企業側情報編集画面表示
 Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
 // 企業側情報編集
