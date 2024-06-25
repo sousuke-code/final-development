@@ -6,6 +6,8 @@ use App\Models\Portfolios;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+ 
+
 use Carbon\Carbon;
 use App\Models\ProgrammingLanguage;
 use App\Models\UserLanguages;
@@ -34,6 +36,19 @@ class UserController extends Controller
     }
 
 
+    function show($id)
+    {
+        // $user = User::all();
+
+        $user =  Auth::user();
+        $userId = auth()->user()->id;
+        $portfolios = Portfolios::where('user_id', $userId)->get();
+        
+
+        // dd($portfolios);
+        return view('users.profileshow',['portfolios'=>$portfolios, 'user'=> $user]);
+    }
+
     function edit($id)
     {
         // $user = User::all();
@@ -41,32 +56,45 @@ class UserController extends Controller
         $user =  Auth::user();
         $userId = auth()->user()->id;
         $portfolios = Portfolios::where('user_id', $userId)->get();
-        // $portfolio = Portfolios::all();
-
-        // ポートフォリオのIDを指定します
-        // $portfolioId = 1; // ここにポートフォリオのIDを指定してください
-        // $portfolioId = $id;
-        // find()メソッドを使用してポートフォリオのレコードを取得します
-        // $portfolio = Portfolios::find($portfolioId);
-
-        // 取得したポートフォリオの情報を確認します
-        // if ($portfolio) {
-        //     echo "ポートフォリオのタイトル: " . $portfolio->title . "<br>";
-        //     echo "ポートフォリオのURL: " . $portfolio->url . "<br>";
-        //     echo "ポートフォリオの写真: " . $portfolio->photo . "<br>";
-        //     echo "ポートフォリオの説明: " . $portfolio->description . "<br>";
-        //     echo "作成日時: " . $portfolio->created_at . "<br>";
-        //     echo "更新日時: " . $portfolio->updated_at . "<br>";
-        // } else {
-        //     echo "指定したIDのポートフォリオが見つかりませんでした。";
-        // }
         
-        // dd($portfolio);
-        // dd($user);
-        // return view('users.profileedit',['user'=>$user]);
 
         // dd($portfolios);
         return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
+    }
+
+    function update(Request $request, $id)
+    {
+
+        $user =  Auth::user();
+        $userId = auth()->user()->id;
+        $portfolios = Portfolios::where('user_id', $userId)->get();
+       
+        
+        // $user -> name = auth()->user()-> name;
+        // $user -> email = $request -> email;
+        // $user -> save();
+
+        $user -> name = $request -> name;
+        $user -> email = $request -> email;
+        $user -> bio = $request -> bio;
+        $user -> career = $request -> career;
+
+        
+        $user -> save();
+        
+
+        // $portfolios -> name = $request -> name;
+        // $portfolios -> email = $request -> email;
+        // $portfolios -> bio = $request -> bio;
+        // $portfolios -> languages = $request -> languages;
+        // $portfolios -> learning_languages = $request -> learning_languages;
+        // $portfolios -> career = $request -> career;
+        // $portfolios -> save();
+        
+
+        // dd($portfolios);
+
+        return view('users.profileshow',['portfolios'=>$portfolios,'user'=>$user]);
     }
 
 // スカウトの拒否
@@ -91,6 +119,7 @@ public function approve($id)
     // 成功したらリダイレクトやレスポンスを返すなど適切な処理を行う
     return redirect()->back()->with('success', 'Scoutの承認が完了しました');
 }
+
 // 検索機能
 public function search(Request $request)
     {
@@ -110,5 +139,6 @@ public function search(Request $request)
     
         return view('users.search_results', ['users' => $users]);
     }
+
 }
 

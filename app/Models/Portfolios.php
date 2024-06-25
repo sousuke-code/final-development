@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Portfolios extends Model
 {
     use HasFactory;
+
+    
+    protected $fillable = [
+        'name',
+        'email',
+        'bio',
+        'languages',
+        'learning_languages',
+        'career',
+    ];
 }
