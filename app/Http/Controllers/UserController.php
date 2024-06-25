@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
  
 
 use Carbon\Carbon;
+use App\Models\ProgrammingLanguage;
+use App\Models\UserLanguages;
+use App\Models\Scout;
 
 
 
@@ -16,8 +19,20 @@ class UserController extends Controller
 {
     //
     function index()
+
+
     {
-        return view('users.mypage');
+
+
+        $user = Auth::user();
+        $activeLog = UserLanguages::where('user_id', $user->id)
+        ->whereNull('end_time')
+        ->first();
+
+
+       $languages = ProgrammingLanguage::all();
+
+        return view('users.mypage', compact('languages','activeLog'));
     }
 
 
@@ -81,6 +96,29 @@ class UserController extends Controller
 
         return view('users.profileshow',['portfolios'=>$portfolios,'user'=>$user]);
     }
+
+// スカウトの拒否
+public function erase(Scout $scout)
+{
+    $scout->delete();
+
+    return redirect()->back()->with('success', 'スカウトを削除しました。');
+}
+
+// スカウトの認証
+public function approve($id)
+{
+    // $idに対応するScoutモデルを取得
+    $scout = Scout::findOrFail($id);
+
+    // conditionをfalseに設定
+    $scout->condition = true;
+    $scout->save();
+
+
+    // 成功したらリダイレクトやレスポンスを返すなど適切な処理を行う
+    return redirect()->back()->with('success', 'Scoutの承認が完了しました');
+}
 
 
 }

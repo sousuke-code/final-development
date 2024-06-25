@@ -1,147 +1,174 @@
-@extends('layout.app')
+@extends('layout.user-header')
 
 @section('content')
-
-<section class="text-gray-600 body-font relative" style="min-height: vh ;">
-    
-    <div class="container px-5 py-24 mx-auto flex flex-wrap items-center justify-center">
-        <div class="w-1/2 p-4">
-            <div id="piechart" style="width: 100%; height: 400px;"></div>
-        </div>
-        <div class="w-1/2 p-2">
-            <div id="columnchart_values" style="width: 100%; height: 400px;"></div>
-        </div>
-        <div class=" space-x-3 mb-2 py-0.5 absolute bottom-20 left-20 right-0 ">
-            @if (session('message'))
-                <div class="display: inline bg-green-500 text-white p-2 mb-2  ">
-                    {{ session('message') }}
+<div class="block">
+    <div class="container px-4 py-4 mx-auto">
+        <h3 class="block text-xl text-gray-700 font-semibold mb-3"></h3>
+        <div class="grid grid-cols-1 md:grid-cols-3  gap-2  ">
+            <!-- Left side, two boxes -->
+            <div class="md:col-span-2 grid grid-rows-2 gap-4">
+                <!--chart1-->
+                <div class="rounded-md p-6 bg-white shadow">
+                    <canvas id="dailyStudyChart" style="width: 100%; height: 100%;"></canvas>
                 </div>
-            @endif
+                <!--chart2-->
 
- 
-
-            @if (session('error'))
-                <div class="bg-red-500 text-white p-2 mb-2">
-                    {{ session('error') }}
+                <div class="rounded-md p-6 bg-white shadow">
+                    <div class="w-full items-center justify-center flex">
+                        <form method="POST" action="{{ route('study_logs.toggle') }}" class="inline-block" id="toggle_form">
+                            @csrf
+                            @if (!isset($activeLog))
+                            <select id="language" name="language"
+                                class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider" {{ isset($activeLog) ? 'disabled' : '' }}>
+                                @foreach ($languages as $language)
+                                <option value="{{ $language->id }}" {{ isset($activeLog) && $activeLog->programming_language_id == $language->id ? 'selected' : '' }}>
+                                    {{ $language->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @endif
+                            <button type="submit" class="text-white {{ isset($activeLog) ? 'bg-red-700 hover:bg-red-800' : 'bg-blue-700 hover:bg-blue-800' }} focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-2" id="toggle_button">
+                                {{ isset($activeLog) ? 'Stop' : 'Start' }}
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            @endif
-        </div>
-    </div>
-    
-    <div class=" bottom-0 left-0 right-0 bg-white py-0 ">
-        <div class="flex justify-center items-center space-x-6 mb-4 py-1">
-            <form method="POST" action="{{ route('study_logs.start') }}" class="inline-block">
-                @csrf
-                <button type="submit" class="flex flex-col items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-9 mb-2 hover:text-blue-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
-                    </svg>
-                    <h1>START</h1>
-                </button>
-            </form>
-            <form method="POST" action="{{ route('study_logs.stop') }}" class="inline-block ml-2">
-                @csrf
-                <button type="submit" class="flex flex-col items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-9 mb-2 hover:text-blue-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    <h1>STOP</h1>
-                </button>
-            </form>
-            <!-- Icon buttons for study logs edit, group chat, and profile -->
-            <div class="p-4 sm:w-1/4 w-1/2 flex flex-col items-center">
-                <div id="icon-button" class="flex justify-center items-center">
-                    <a href="{{ route('study_logs.index', ['user'=> 1]) }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-8 mb-2 hover:text-blue-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1-2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                        </svg>
-                    </a>
-                </div>
-                <h2 class="title-font font-medium text-base text-gray-900">学習記録の編集</h2>
             </div>
-
-                </div>
-                <h2 class="title-font font-medium text-base text-gray-900">グループチャット</h2>
-            </div>
-
-            <div class="p-4 sm:w-1/4 w-1/2 flex flex-col items-center">
-                <div id="icon-button" class="flex justify-center items-center">
-                    <a href="{{ route('users.edit', ['user'=> 1]) }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-8 mb-2 hover:text-blue-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                    </a>
-                </div>
-                <h2 class="title-font font-medium text-base text-gray-900">プロフィール</h2>
+            <!-- Right side, one box -->
+            <div class="md:col-span-1 rounded-md p-6 bg-white shadow ">
+                <!-- Additional content here -->
+                <canvas id="studyTimeChart" style="width: 100%; height: 100%;"></canvas>
             </div>
         </div>
     </div>
+</div>
 
-    <html>
-<head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawCharts);
 
-        function drawCharts() {
-            drawPieChart(); // 円グラフを描画する関数
-            drawColumnChart(); // 縦棒グラフを描画する関数
-        }
 
-        function drawPieChart() {
-            // 円グラフのデータとオプション設定
-            var data = google.visualization.arrayToDataTable([
-                ['', '学習言語'],
-                ['laravel',     11],
-                ['C言語',      2],
-                ['HTML',  2],
-                ['Word Press', 2],
-                ['その他',    7]
-            ]);
 
-            var options = {
-                title: '学習言語',
-                width: '100%',
-                height: 300,
-            };
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ajax request to fetch study times
+        fetch('{{ route('study_logs.study_times') }}')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('studyTimeChart').getContext('2d');
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-        }
+                const labels = Object.keys(data);
+                const values = Object.values(data);
 
-        function drawColumnChart() {
-            // 縦棒グラフのデータとオプション設定
-            var data = google.visualization.arrayToDataTable([
-                ['曜日', '学習時間(h)', { role: 'style' }],
-                ['月曜', 2, 'madblue'],
-                ['火曜', 5, 'madblue'],
-                ['水曜', 4, 'madblue'],
-                ['木曜', 2, 'madblue'],
-                ['金曜', 4, 'madblue'],
-                ['土曜', 6, 'madblue'],
-                ['日曜', 3, 'madblue'],
-                
-            ]);
+                new Chart(ctx, {
+                    type: 'pie', // 円グラフを指定
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '学習時間 (分)',
+                            data: values,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.6)', // 色の指定、必要に応じて追加できます
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)',
+                                'rgba(255, 159, 64, 0.6)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: '言語ごとの学習時間割合'
+                            }
+                        }
+                    }
+                });
+            });
+    });
 
-            var options = {
-                title: '学習時間',
-                width: '100%',
-                height: 500,
-                legend: { position: 'none' },
-            };
 
-            var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
-            chart.draw(data, options);
-        }
-    </script>
-</head>
-<body>
-    <div id="piechart" style="width: 0px; height: 0px;"></div>
-    <div id="columnchart_values" style="width: 0px; height: 0px;"></div>
-</body>
-</html>
-</section>
-@endsection  
+    document.addEventListener('DOMContentLoaded', function () {
+        // 今日から一週間前までの日付を生成
+        const endDate = new Date();  // 現在の日時
+        const startDate = new Date();
+        startDate.setDate(endDate.getDate() - 6);  // 現在の日時から6日前
 
+        // 日付を文字列に変換してAPIに渡す形式にする
+        const startDateString = startDate.toISOString().split('T')[0];
+        const endDateString = endDate.toISOString().split('T')[0];
+
+        console.log('Fetching study data from', startDateString, 'to', endDateString); 
+
+        // Ajaxリクエストを使用してサーバーから学習状況を取得する
+        fetch('{{ route('study_logs.daily_study') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'  // CSRFトークンの追加
+            },
+            body: JSON.stringify({
+                start_date: startDateString,
+                end_date: endDateString
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Received data:', data);
+            const ctx = document.getElementById('dailyStudyChart').getContext('2d');
+
+            const dates = Object.keys(data);
+            const studyTimes = Object.values(data);
+
+            new Chart(ctx, {
+                type: 'bar',  // 折れ線グラフを指定
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: '日別学習時間 (分)',
+                        data: studyTimes,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)', // 棒の色
+                        borderColor: 'rgba(75, 192, 192, 1)', // 枠線の色
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false  // 凡例は非表示
+                        },
+                        title: {
+                            display: true,
+                            text: '一週間の日別学習時間'
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+        console.error('Error fetching study data:', error); // デバッグ用
+       });
+    });
+
+    
+</script>
+
+
+@endsection
