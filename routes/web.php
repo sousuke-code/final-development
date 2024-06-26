@@ -97,11 +97,11 @@ Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
 
 // プロフィール削除
-// Route::delete('/users/{user}', [UserController::class, 'destroy'])
-// ->name('users.destroy');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])
+->name('users.destroy');
 
-Route::put('/users/{id}/delete-selected', [UserController::class, 'deleteselected'])
-->name('users.deleteselected');
+// Route::put('/users/{id}/delete-selected', [UserController::class, 'deleteselected'])
+// ->name('users.deleteselected');
 
 
 

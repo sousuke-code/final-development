@@ -51,8 +51,6 @@ class UserController extends Controller
 
     function edit($id)
     {
-        // $user = User::all();
-
         $user =  Auth::user();
         $userId = auth()->user()->id;
         $portfolios = Portfolios::where('user_id', $userId)->get();
@@ -68,9 +66,6 @@ class UserController extends Controller
         $user =  Auth::user();
         $userId = auth()->user()->id;
         $portfolios = Portfolios::where('user_id', $userId)->get();
-       
-        
-        
 
         $user -> name = $request -> name;
         $user -> email = $request -> email;
@@ -79,37 +74,26 @@ class UserController extends Controller
 
         
         $user -> save();
-    
 
         return view('users.profileshow',['portfolios'=>$portfolios,'user'=>$user]);
     }
 
-
-public function deleteSelected(Request $request, $id)
+    public function destroy($id)
 {
-    // ユーザーを取得
-    $user = User::findOrFail($id);
+    // 現在ログインしているユーザーを取得
+    $user = Auth::user();
 
-    // リクエストから削除対象の項目を取得し、それぞれ削除する
-    if ($request->has('delete_name')) {
-        $user->name = null;
-    }
-    if ($request->has('delete_email')) {
-        $user->email = null;
-    }
-    if ($request->has('delete_bio')) {
-        $user->bio = null;
-    }
-    if ($request->has('delete_career')) {
-        $user->career = null;
-    }
-
-    // ユーザー情報を保存
+    // ユーザー情報を空にして保存
+    $user->name = null;
+    $user->email = null;
+    $user->bio = null;
+    $user->career = null;
     $user->save();
 
-    // 削除後にリダイレクト
-    return redirect()->route('users.show', $user->id)->with('success', '選択された項目を削除しました');
+    // プロフィール表示ページにリダイレクト
+    return redirect()->route('users.show',$user->id);
 }
+
 
 
 

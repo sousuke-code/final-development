@@ -54,7 +54,12 @@
               </div>
              </form> 
              <br>
-             <form method="POST" action="{{ route('users.deleteselected', $user->id) }}">
+             <form action="{{ route('users.destroy',$user->id) }}" method="post">
+              @csrf
+              @method('delete')
+              <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+             </form>
+             {{-- <form method="POST" action="{{ route('users.deleteselected', $user->id) }}">
               @csrf
               @method('PUT')
           
@@ -64,7 +69,7 @@
               <label><input type="checkbox" name="delete_career"> キャリアを削除</label><br>
               <br>
               <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("選択した項目削除しますか？");'>
-          </form>
+          </form> --}}
           
             </div>
           </div> 
