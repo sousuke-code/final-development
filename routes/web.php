@@ -40,6 +40,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -91,6 +92,9 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 // スカウト認証,拒否
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
+//企業詳細
+Route::get('/companies/{id}',[UserController::class,'companiesshow'])
+->name('companies.show');
 
 
 
@@ -110,7 +114,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/study_logs', [StudyLogsController::class, 'index'])->name('study_logs.index');
     Route::post('/study_logs/start', [StudyLogsController::class, 'start'])->name('study_logs.start');
     Route::post('/study_logs/stop', [StudyLogsController::class, 'stop'])->name('study_logs.stop');
-      
+    
 });
 //GitHub認証連携
 
@@ -139,6 +143,7 @@ Route::middleware(['auth:company'])->group(function () {
       // 検索機能
       Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
 });
+      
 
 
 

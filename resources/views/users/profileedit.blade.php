@@ -166,6 +166,6 @@
 </div>
 @endsection
 
-{{ $portfolio['title'] }}
+{{ $portofolio['title'] }}
 
 {{ $user['name'] }}

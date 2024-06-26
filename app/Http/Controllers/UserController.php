@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Scout;
-
+use App\Models\Company;
 
 
 
@@ -56,6 +56,12 @@ class UserController extends Controller
         return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
+        public function companiesshow($id) 
+        {
+            $company = Company::findOrFail($id);
+            return view('users.companydetail',['company'=>$company]);
+        }   
+    
 // スカウトの拒否d
 public function erase(Scout $scout)
 {
@@ -63,5 +69,7 @@ public function erase(Scout $scout)
 
     return redirect()->back()->with('success', 'スカウトを削除しました。');
 }
+
 }
+
 

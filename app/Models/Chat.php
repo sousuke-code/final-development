@@ -16,5 +16,10 @@ class Chat extends Model
         'company_id',
         'sender_type',
         'receiver_type',
+
     ];
+    public function user()
+    {
+        return $this->blongTo(User::class);
+    }
 }
