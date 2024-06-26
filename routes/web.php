@@ -194,6 +194,7 @@ Route::middleware(['auth:company'])->group(function () {
       
       Route::get('/companies/list', [ScoutController::class, 'index'])->name('companies.list');
 });
+
     // ユーザーから送られてきたメッセージ企業側から通知
 // Route::get('/companies', [ChatController::class, 'index'])->name('chats.index');
 
