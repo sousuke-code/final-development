@@ -53,6 +53,10 @@
    </div>
 </div>
 
+
+
+@endsection
+
     {{-- <h1>検索結果</h1>
     @if ($users->isEmpty())
         <p>該当するユーザーが見つかりませんでした。</p>
@@ -67,6 +71,3 @@
             @endforeach
         </ul>
     @endif --}}
-
-
-@endsection

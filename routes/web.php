@@ -114,8 +114,7 @@ Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
 
- // 検索機能
- Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
+
 
 
 
@@ -132,6 +131,9 @@ Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name(
 
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 
+// ユーザー側ユーザー検索
+
+Route::get('/users.search', [UserController::class, 'search'])->name('users.search');
 
 
 
@@ -176,6 +178,7 @@ Route::middleware(['auth:company'])->group(function () {
       Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
       // 検索機能
       Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
+      
       Route::get('/companies/list', [ScoutController::class, 'index'])->name('companies.list');
 });
     // ユーザーから送られてきたメッセージ企業側から通知
