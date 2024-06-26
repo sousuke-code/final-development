@@ -35,7 +35,7 @@ use App\Models\Portfolios;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
 
