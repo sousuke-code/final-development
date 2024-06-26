@@ -1103,7 +1103,7 @@ function messengerSearch(input) {
  */
 function deleteGroupChat(channel_id) {
   $.ajax({
-    url: url + "/group-chat/delete",
+    url: url + "/group-chat/remove",
     method: "POST",
     data: { _token: csrfToken, channel_id: channel_id, user_id: auth_id },
     dataType: "JSON",

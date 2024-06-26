@@ -20,7 +20,7 @@
       </div>
       
       <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 flex hover:bg-gray-100">
-        <a href="" class="flex items-center">
+        <a href="{{ route('companies.list') }}" class="flex items-center">
           <p class="font-semibold">マッチリスト</p>
 
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 ml-3">
@@ -33,8 +33,9 @@
     <div class="w-10/12">
       <div class="flex flex-row">
         <div class="bg-no-repeat bg-white-400 border border-black-300 rounded-xl w-7/12 mr-2 p-6" >
-          <p class="text-5xl text-indigo-900">Welcome <br><strong>Lorem Ipsum</strong></p>
-          <span class="bg-red-300 text-xl text-white inline-block rounded-full mt-12 px-8 py-2"><strong>01:51</strong></span>
+          @foreach ($company->images ?? [] as $image)
+          <img src="{{ asset('storage/' . $image) }}" alt="企業画像" class="rounded-md object-cover mb-4" style="width: 200px; height: 200px;">
+           @endforeach
         </div>
 
         <div class="bg-no-repeat bg-white-200 border border-black-300 rounded-xl w-5/12 ml-2 p-6" >
@@ -51,9 +52,10 @@
           <form action="{{ route('companies.search') }}" method="GET">
             <!-- フォームの内容 -->
             <div class="w-full items-center justify-center flex">
-              <select id="言語の選択" name="language"
+              {{-- <select id="言語の選択" name="language"
               class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-                  <option value="All" selected>HTML</option>
+                  <option value="All" selected>ALL</option>
+                  <option value="HTML">HTML</option>
                   <option value="CSS">CSS</option>
                   <option value="Java">Java</option>
                   <option value="JavaScript">JavaScript</option>
@@ -62,19 +64,20 @@
                   <option value="C">C</option>
                   <option value="C++">C++</option>
                   <option value="C#">C#</option>
-              </select>
+              </select> --}}
+
+              <select id="language" name="language"
+              class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider" >
+              @foreach ($languages as $language)
+              <option value="{{ $language->id }}" >
+                  {{ $language->name }}
+              </option>
+              @endforeach
+           </select>
+              
+
           </div>
 
-{{-- 邪魔だったのでいったんコメントアウトしました↓ --}}
-
-          {{-- <div class="w-full mt-5 flex items-center justify-center">
-            <select id="ポートフォリオの選択" name="portfolio"
-            class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-indigo-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-                <option value="All" selected>ポートフォリオ有</option>
-                <option value="Freemium">ポートフォリオ無</option>
-            </select>
-        </div>
-           --}}
           <div class="text-center mt-5">
             <button type="submit" class="bg-sky-500 text-white rounded-xl px-2 md:px-3 py-0 md:py-1 h-10">検索する</button>
           </div>
@@ -84,11 +87,12 @@
 
 
 
-  
-      
+ 
+
     </div>
   </div>
 </div>
+
 
 
 @endsection

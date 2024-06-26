@@ -20,6 +20,7 @@ class Chat extends Model
     ];
     public function user()
     {
-        return $this->blongTo(User::class);
+
+        return $this->belongsTo(User::class);
     }
 }
