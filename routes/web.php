@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\AvatarController;
 use App\Models\Portfolios;
 
 /*
@@ -119,6 +120,8 @@ Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 
 
+
+
 // プロフィール更新
 Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
@@ -136,6 +139,7 @@ Route::put('/users/{user}', [UserController::class, 'update'])
 
 // 企業側情報編集画面表示
 Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+
 // 企業側情報編集
 // Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
 
