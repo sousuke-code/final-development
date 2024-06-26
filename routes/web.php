@@ -93,7 +93,7 @@ Route::get('/groups', [GroupChatController::class, 'index'])
 ->name('groups.index');
 
 // プロフィール詳細画面
-Route::get('/users/{user}', [UserController::class, 'show'])
+Route::get('/users/show/{id}', [UserController::class, 'show'])
 ->name('users.show');
 
 // プロフィール編集画面
@@ -140,7 +140,7 @@ Route::put('/users/{user}', [UserController::class, 'update'])
 
 
 // 企業側情報編集画面表示
-Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+Route::get('/companies/edit/{id}',[CompanyController::class,'edit'])->name('companies.edit');
 
 // 企業側情報編集
 // Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
