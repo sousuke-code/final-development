@@ -118,6 +118,9 @@ Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.app
 // スカウト拒否
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
+//企業詳細
+Route::get('/companies/{id}',[UserController::class,'companiesshow'])
+->name('companies.show');
 
 
 
@@ -156,8 +159,7 @@ Route::get('/users.search', [UserController::class, 'search'])->name('users.sear
 
 
 Route::middleware('auth')->group(function () {
-  
- 
+
     Route::post('/study_logs/toggle', [StudyLogsController::class, 'toggle'])->name('study_logs.toggle');
     Route::get('/study_logs/chart', [StudyLogsController::class, 'getStudyTimes'])->name('study_logs.study_times');
     Route::post('/study_logs/daily_study', [StudyLogsController::class, 'getDailyStudyData'])->name('study_logs.daily_study');
@@ -194,6 +196,7 @@ Route::middleware(['auth:company'])->group(function () {
       
       Route::get('/companies/list', [ScoutController::class, 'index'])->name('companies.list');
 });
+
     // ユーザーから送られてきたメッセージ企業側から通知
 // Route::get('/companies', [ChatController::class, 'index'])->name('chats.index');
 
