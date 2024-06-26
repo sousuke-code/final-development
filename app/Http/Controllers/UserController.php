@@ -32,7 +32,7 @@ class UserController extends Controller
 
        $languages = ProgrammingLanguage::all();
 
-        return view('users.mypage', compact('languages','activeLog'));
+        return view('users.mypage', compact('languages','activeLog', 'user'));
     }
 
 
@@ -66,20 +66,34 @@ class UserController extends Controller
         $user =  Auth::user();
         $userId = auth()->user()->id;
         $portfolios = Portfolios::where('user_id', $userId)->get();
+        // $user -> name = auth()->user()-> name;
+        // $user -> email = $request -> email;
+        // $user -> save();
 
         $user -> name = $request -> name;
         $user -> email = $request -> email;
         $user -> bio = $request -> bio;
-        $user -> career = $request -> career;
-
-        
         $user -> save();
 
-        return view('users.profileshow',['portfolios'=>$portfolios,'user'=>$user]);
+        return view('users.profileshow',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
-    public function destroy($id)
-{
+    public function destroy($id){
+    // 現在ログインしているユーザーを取得
+    $user = Auth::user();
+
+    // ユーザー情報を空にして保存
+    $user->name = null;
+    $user->email = null;
+    $user->bio = null;
+    $user->career = null;
+    $user->save(); 
+
+    // プロフィール表示ページにリダイレクト
+    return redirect()->route('users.show',$user->id);
+}
+
+    public function destroy($id){
     // 現在ログインしているユーザーを取得
     $user = Auth::user();
 
@@ -93,11 +107,6 @@ class UserController extends Controller
     // プロフィール表示ページにリダイレクト
     return redirect()->route('users.show',$user->id);
 }
-
-
-
-
-
 
 // スカウトの拒否
 public function erase(Scout $scout)
@@ -122,6 +131,25 @@ public function approve($id)
     return redirect()->back()->with('success', 'Scoutの承認が完了しました');
 }
 
+// 検索機能
+public function search(Request $request)
+    {
+        $languageId = $request->input('language');
+    
+        $query = User::query();
+    
+  
+            $query->whereHas('userLanguages', function($q) use ($languageId) {
+                $q->whereHas('programmingLanguage', function($q) use ($languageId) {
+                    $q->where('id', $languageId);
+                });
+            });
+
+    
+        $users = $query->get();
+    
+        return view('users.search_results', ['users' => $users]);
+    }
 
 }
 

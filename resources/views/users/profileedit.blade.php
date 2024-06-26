@@ -1,77 +1,54 @@
-@extends('layout.app')
+@extends('layout.header')
 
 @section('content')
-<div class="container flex w-full  px-5 ">
+
 
     <div class="bg-green w-1/2">
-        <div class="container mx-auto">
-            <div class="flex flex-col items-center">
-             <form action="{{ route('users.update' , $user->id) }}" method="POST">
-                @csrf
-                @method('put')
-              <div class="flex flex-row justify-between w-full">
-                <div class="flex flex-col">
-                  <div class="col-md-6">
-                    <label for="name">名前</label>
-                    <input type="name" class="form-control" id="name" value="{{ $user->name }}" name="name">
-                  </div>
-                </div>
-              </div>
-              <div class="mt-4 w-full">
-                <div class="flex flex-col">
-                  <div class="col-md-6">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" class="form-control" id="email" value="{{ $user->email }}" name="email">
-                  </div>
-                </div>
-                <div class="mt-2">
-                  <div class="col-md-6">
-                    <label for="bio">自己紹介</label>
-                    <textarea class="form-control" id="bio" rows="5" name='bio'>{{ $user->bio }}</textarea>
-                  </div>
-                </div>
-                <div class="mt-2">
-                  <div class="col-md-6">
-                    <label for="languages">得意な言語</label>
-                    <input type="text" class="form-control" id="languages" value="{{ $user->languages }}" >
-                  </div>
-                </div>
-                <div class="mt-2">
-                  <div class="col-md-6">
-                    <label for="learning_languages">学習中の言語</label>
-                    <input type="text" class="form-control" id="learning_languages" value="{{ $user->learning_languages }}">
-                  </div>
-                </div>
-                <div class="mt-2">
-                   <div class="col-md-6">
-                    <label for="career">経歴</label>
-                    <textarea class="form-control" id="career" rows="5" name='career'>{{ $user->career }}</textarea>
-                   </div>
-                   <div class="col-md-6 text-center">
-                   <button type="submit" class="btn btn-pri">更新</button>
-                   </div> 
-                </div>
-              </div>
-             </form> 
-             <br>
-             <form action="{{ route('users.destroy',$user->id) }}" method="post">
+          <div class="flex justify-center mt-20 px-8 ">
+            <form class="max-w-2xl" action="{{ route('users.show' , $user->id) }}" method="POST">
+              
               @csrf
-              @method('delete')
-              <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？");'>
-             </form>
-             {{-- <form method="POST" action="{{ route('users.deleteselected', $user->id) }}">
-              @csrf
-              @method('PUT')
+              @method('put')
+                <div class="flex flex-wrap border shadow rounded-lg p-3 dark:bg-gray-600">
+                    <h2 class="text-xl text-gray-600 dark:text-gray-300 pb-2">アカウント情報</h2>
+        
+                    <div class="flex flex-col gap-2 w-full border-gray-400">
+        
+                        <div>
+                            <label class="text-gray-600 dark:text-gray-400" for="name">名前
+                            </label>
+                            <input
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-gray-100"
+                                type="name" id="name" placeholder="{{ $user->name }}" name="name" value="{{ $user->name }}">
+                        </div>
+        
+                        <div>
+                            <label class="text-gray-600 dark:text-gray-400" for="email">メールアドレス</label>
+                            <input
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-gray-100"
+                                type="email" id="email" name="email" placeholder="{{$user->email}}" value="{{ $user->email }}">
+                        </div>
+        
+                        <div>
+                            <label class="text-gray-600 dark:text-gray-400" for="bio">自己紹介</label>
+                            <textarea
+                                class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow dark:bg-gray-600 dark:text-gray-100"
+                                name="bio">{{ $user->bio }}</textarea>
+                        </div>
+
+                        <div class="flex justify-end">
+                         
+                            <button
+                                class="py-1.5 px-3 m-1 text-center bg-violet-700 border rounded-md text-white  hover:bg-violet-500 hover:text-gray-100 dark:text-gray-200 dark:bg-violet-700"
+                                type="submit">保存する</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
           
-              <label><input type="checkbox" name="delete_name"> 名前を削除</label><br>
-              <label><input type="checkbox" name="delete_email"> メールアドレスを削除</label><br>
-              <label><input type="checkbox" name="delete_bio"> 自己紹介を削除</label><br>
-              <label><input type="checkbox" name="delete_career"> キャリアを削除</label><br>
-              <br>
-              <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("選択した項目削除しますか？");'>
-          </form> --}}
-          
-            </div>
-          </div> 
-    </div>
+        
+
+>>>>>>> main
 @endsection

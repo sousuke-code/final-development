@@ -20,6 +20,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
+use App\Http\Controllers\PortfolioController;
+use App\Models\Portfolios;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ use App\Http\Controllers\ScoutController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
 
@@ -74,6 +76,11 @@ Route::group(['prefix' => 'company'], function () {
 // スカウト送信機能
 Route::post('/companies/send-scout/{userId}', [CompanyController::class, 'sendScout'])->name('companies.sendScout');
 
+Route::get('/users/portfolio/edit',[PortfolioController::class, 'edit'])->name('portofolio.edit');
+
+Route::put('/users/portfolio/store', [PortfolioController::class, 'update'])
+->name('portofolio.store');
+
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
@@ -112,7 +119,18 @@ Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 
 
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
 
+ // 検索機能
+ Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
+
+
+
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
 
 
 
