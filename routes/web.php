@@ -103,6 +103,15 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])
 Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
 
+// プロフィール削除
+Route::delete('/users/{user}', [UserController::class, 'destroy'])
+->name('users.destroy');
+
+// Route::put('/users/{id}/delete-selected', [UserController::class, 'deleteselected'])
+// ->name('users.deleteselected');
+
+
+
 // スカウト認証
 Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.approve');
 // スカウト拒否

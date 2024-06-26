@@ -4,9 +4,6 @@
 
 
     <div class="bg-green w-1/2">
-       
-
-
           <div class="flex justify-center mt-20 px-8 ">
             <form class="max-w-2xl" action="{{ route('users.show' , $user->id) }}" method="POST">
               
@@ -53,4 +50,5 @@
           
         
 
+>>>>>>> main
 @endsection
