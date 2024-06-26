@@ -119,7 +119,7 @@ Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.app
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
 //企業詳細
-Route::get('/companies/{id}',[UserController::class,'companiesshow'])
+Route::get('/companies/show/{id}',[UserController::class,'companiesshow'])
 ->name('companies.show');
 
 
