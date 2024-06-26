@@ -22,6 +22,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\UserViewController;
 use App\Models\Portfolios;
 
 /*
@@ -165,6 +166,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/study_logs/daily_study', [StudyLogsController::class, 'getDailyStudyData'])->name('study_logs.daily_study');
       
 });
+
+
+
+//ユーザー詳細（他企業、他ユーザーから）
+Route::get('/profile/{id}/show', [UserViewController::class,'show'])->name('profile.show');
+
+//指定ユーザーの勉強勉強記録グラフ化
+Route::get('profile/{user_id}/chart', [UserViewController::class, 'getStudyTimes'])->name('study_logs.user');
+
 
 
 //GitHub認証連携
