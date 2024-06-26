@@ -78,16 +78,6 @@
 
           </div>
 
-{{-- 邪魔だったのでいったんコメントアウトしました↓ --}}
-
-          {{-- <div class="w-full mt-5 flex items-center justify-center">
-            <select id="ポートフォリオの選択" name="portfolio"
-            class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-indigo-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-                <option value="All" selected>ポートフォリオ有</option>
-                <option value="Freemium">ポートフォリオ無</option>
-            </select>
-        </div>
-           --}}
           <div class="text-center mt-5">
             <button type="submit" class="bg-sky-500 text-white rounded-xl px-2 md:px-3 py-0 md:py-1 h-10">検索する</button>
           </div>

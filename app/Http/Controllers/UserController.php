@@ -15,6 +15,7 @@ use App\Models\Scout;
 
 
 
+
 class UserController extends Controller
 {
     //
@@ -120,23 +121,23 @@ public function approve($id)
 
 // 検索機能
 public function search(Request $request)
-    {
-        $languageId = $request->input('language');
+{
+    $languageId = $request->input('language');
+    $languages = ProgrammingLanguage::all();
     
-        $query = User::query();
-    
-  
-            $query->whereHas('userLanguages', function($q) use ($languageId) {
-                $q->whereHas('programmingLanguage', function($q) use ($languageId) {
-                    $q->where('id', $languageId);
-                });
-            });
+    $query = User::query();
 
-    
-        $users = $query->get();
-    
-        return view('users.search_results', ['users' => $users]);
+    if (!empty($languageId)) {
+        $query->whereHas('userLanguages', function($q) use ($languageId) {
+            $q->whereHas('programmingLanguage', function($q) use ($languageId) {
+                $q->where('id', $languageId);
+            });
+        });
     }
 
+    $users = $query->get();
+    return view('users.search', compact('languages', 'users'));
+
+}
 }
 
