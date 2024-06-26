@@ -138,7 +138,7 @@
                     width: '100%',
                     height: 500,
                     legend: { position: 'none' },
-                };
+                };//uu
 
                 var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
                 chart.draw(data, options);
