@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use App\Models\ProgrammingLanguage;
 use App\Models\UserLanguages;
 use App\Models\Scout;
-
+use App\Models\Company;
 
 
 
@@ -61,6 +61,14 @@ class UserController extends Controller
         return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
+
+        public function companiesshow($id) 
+        {
+            $company = Company::findOrFail($id);
+            return view('users.companydetail',['company'=>$company]);
+        }   
+    
+// スカウトの拒否d
     function update(Request $request, $id)
     {
 
@@ -97,12 +105,14 @@ class UserController extends Controller
 }
 
 // スカウトの拒否
+
 public function erase(Scout $scout)
 {
     $scout->delete();
 
     return redirect()->back()->with('success', 'スカウトを削除しました。');
 }
+
 
 // スカウトの認証
 public function approve($id)
@@ -138,6 +148,7 @@ public function search(Request $request)
     $users = $query->get();
     return view('users.search', compact('languages', 'users'));
 
+
 }
-}
+
 

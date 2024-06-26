@@ -28,7 +28,8 @@
                             <p class="text-sm text-gray-500">
                                 @foreach ($scouts as $scout)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $scout->company->name }}からオファーがありました。</td>
+                                    <a href="{{ route('companies.show',['id' => $scout->company->id ]) }}"><td class="border px-4 py-2">{{ $scout->company->name }}からオファーがありました。
+                                    </td></a>
                                     <td class="border px-4 py-2">{{ $scout->created_at }}</td>
                                     <td class="border px-4 py-2">
                                         <form action="{{ route('scout.approve', ['id' => $scout->id]) }}" method="POST">
