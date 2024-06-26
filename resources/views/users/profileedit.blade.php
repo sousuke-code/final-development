@@ -6,7 +6,7 @@
     <div class="bg-green w-1/2">
         <div class="container mx-auto">
             <div class="flex flex-col items-center">
-             <form action="{{ route('users.show' , $user->id) }}" method="POST">
+             <form action="{{ route('users.update' , $user->id) }}" method="POST">
                 @csrf
                 @method('put')
               <div class="flex flex-row justify-between w-full">
@@ -48,15 +48,25 @@
                     <textarea class="form-control" id="career" rows="5" name='career'>{{ $user->career }}</textarea>
                    </div>
                    <div class="col-md-6 text-center">
-                    {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary">更新</a> --}}
                    <button type="submit" class="btn btn-pri">更新</button>
                    </div> 
                 </div>
               </div>
              </form> 
+             <br>
+             <form method="POST" action="{{ route('users.deleteselected', $user->id) }}">
+              @csrf
+              @method('PUT')
+          
+              <label><input type="checkbox" name="delete_name"> 名前を削除</label><br>
+              <label><input type="checkbox" name="delete_email"> メールアドレスを削除</label><br>
+              <label><input type="checkbox" name="delete_bio"> 自己紹介を削除</label><br>
+              <label><input type="checkbox" name="delete_career"> キャリアを削除</label><br>
+              <br>
+              <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("選択した項目削除しますか？");'>
+          </form>
+          
             </div>
           </div> 
-          
-        
     </div>
 @endsection

@@ -70,9 +70,7 @@ class UserController extends Controller
         $portfolios = Portfolios::where('user_id', $userId)->get();
        
         
-        // $user -> name = auth()->user()-> name;
-        // $user -> email = $request -> email;
-        // $user -> save();
+        
 
         $user -> name = $request -> name;
         $user -> email = $request -> email;
@@ -81,21 +79,41 @@ class UserController extends Controller
 
         
         $user -> save();
-        
-
-        // $portfolios -> name = $request -> name;
-        // $portfolios -> email = $request -> email;
-        // $portfolios -> bio = $request -> bio;
-        // $portfolios -> languages = $request -> languages;
-        // $portfolios -> learning_languages = $request -> learning_languages;
-        // $portfolios -> career = $request -> career;
-        // $portfolios -> save();
-        
-
-        // dd($portfolios);
+    
 
         return view('users.profileshow',['portfolios'=>$portfolios,'user'=>$user]);
     }
+
+
+public function deleteSelected(Request $request, $id)
+{
+    // ユーザーを取得
+    $user = User::findOrFail($id);
+
+    // リクエストから削除対象の項目を取得し、それぞれ削除する
+    if ($request->has('delete_name')) {
+        $user->name = null;
+    }
+    if ($request->has('delete_email')) {
+        $user->email = null;
+    }
+    if ($request->has('delete_bio')) {
+        $user->bio = null;
+    }
+    if ($request->has('delete_career')) {
+        $user->career = null;
+    }
+
+    // ユーザー情報を保存
+    $user->save();
+
+    // 削除後にリダイレクト
+    return redirect()->route('users.show', $user->id)->with('success', '選択された項目を削除しました');
+}
+
+
+
+
 
 // スカウトの拒否
 public function erase(Scout $scout)
