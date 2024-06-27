@@ -53,19 +53,7 @@
 
             <!-- フォームの内容 -->
             <div class="w-full items-center justify-center flex">
-              {{-- <select id="言語の選択" name="language"
-              class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-                  <option value="All" selected>ALL</option>
-                  <option value="HTML">HTML</option>
-                  <option value="CSS">CSS</option>
-                  <option value="Java">Java</option>
-                  <option value="JavaScript">JavaScript</option>
-                  <option value="PHP">PHP</option>
-                  <option value="Python">Python</option>
-                  <option value="C">C</option>
-                  <option value="C++">C++</option>
-                  <option value="C#">C#</option>
-              </select> --}}
+              
 
               <select id="language" name="language"
               class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-black-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider" >

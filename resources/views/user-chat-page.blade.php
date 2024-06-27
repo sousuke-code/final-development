@@ -39,7 +39,7 @@
               <p>{{ $chat['message'] }}</p>
             </div>
             <div class="w-9 h-9 rounded-full flex items-center justify-center ml-2">
-              <img src="https://placehold.co/200x/b7a8ff/ffffff.svg?text=ʕ•́ᴥ•̀ʔ&font=Lato" alt="My Avatar" class="w-8 h-8 rounded-full">
+              <img src="{{ asset('storage/' . $user->photo) }}" alt="{{ $user->photo }} image" alt="My Avatar" class="w-8 h-8 rounded-full">
             </div>
           </div>
 
