@@ -188,7 +188,7 @@ Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
 Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
 
 Route::middleware(['auth'])->group(function() { 
-    Route::get('/users/chat', [ChatController::class,'loadUserChats']);
+    Route::get('/users/chat', [ChatController::class,'loadUserChats'])->name('users.chat');
     Route::post('/users/chat/messages', [ChatController::class, 'Userstore']);
 });
 Route::middleware(['auth:company'])->group(function () {

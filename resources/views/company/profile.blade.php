@@ -39,7 +39,7 @@
         </div>
 
         <div class="bg-no-repeat bg-white-200 border border-black-300 rounded-xl w-5/12 ml-2 p-6" >
-          <p class="text-5xl text-indigo-900">mail box <br><strong>23</strong></p>
+          <p class="text-5xl text-indigo-900">メッセージ一覧 <br><strong>23</strong></p>
           
           @livewire('modal')
         </div>

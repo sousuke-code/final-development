@@ -14,7 +14,7 @@
               <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
                   タイトル
               </label>
-              <input type="title" name="title" id="title" placeholder="example@domain.com"
+              <input type="title" name="title" id="title" placeholder="作品名を記入してください"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
           </div>
 
@@ -22,7 +22,7 @@
               <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
                   URL
               </label>
-              <input type="url" name="url" id="url" placeholder="example@domain.com"
+              <input type="url" name="url" id="url" placeholder="作品のURLを記入してください"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
           </div>
 
@@ -30,7 +30,7 @@
               <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
                   作品内容の記述
               </label>
-              <textarea type="description" name="description" id="description" placeholder="example@domain.com"
+              <textarea type="description" name="description" id="description" placeholder="特徴や使用した言語について記述してください"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
           </div>
 
