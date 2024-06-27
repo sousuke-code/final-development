@@ -31,7 +31,7 @@ class PortfolioController extends Controller
 
         $portfolios = Portfolios::where('user_id', $userId)->get();
 
-        return redirect()->route('users.show', ['user' => $userId]);
+        return redirect()->route('users.show', ['id' => $userId]);
 
     }
 }

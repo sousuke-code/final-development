@@ -43,7 +43,7 @@ class PortfolioAdminController extends Controller
 
     // 更新後、ユーザーのプロフィール表示ページにリダイレクト
     $userId = auth()->user()->id;
-    return redirect()->route('users.show', ['user' => $userId]);
+    return redirect()->route('users.show', ['id' => $userId]);
 }
 
 }

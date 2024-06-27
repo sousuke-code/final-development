@@ -91,25 +91,25 @@ class UserController extends Controller
         return view('users.profileshow',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
-    public function destroy($id)
-{
+//     public function destroy($id)
+// {
  
 
-    public function destroy($id){
+//     public function destroy($id){
       
-    // 現在ログインしているユーザーを取得
-    $user = Auth::user();
+//     // 現在ログインしているユーザーを取得
+//     $user = Auth::user();
 
-    // ユーザー情報を空にして保存
-    $user->name = null;
-    $user->email = null;
-    $user->bio = null;
-    $user->career = null;
-    $user->save();
+//     // ユーザー情報を空にして保存
+//     $user->name = null;
+//     $user->email = null;
+//     $user->bio = null;
+//     $user->career = null;
+//     $user->save();
 
-    // プロフィール表示ページにリダイレクト
-    return redirect()->route('users.show',$user->id);
-}
+//     // プロフィール表示ページにリダイレクト
+//     return redirect()->route('users.show',$user->id);
+// }
 
 // スカウトの拒否
 
