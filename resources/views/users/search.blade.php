@@ -37,9 +37,11 @@
                     @foreach ($users as $user)
                         <li class="py-3 sm:py-4">
                             <div class="flex items-center">
-                                <img class="w-8 h-8 rounded-full" src="/path/to/profile-picture.jpg" alt="{{ $user->photo }} image">
+                                <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $user->photo) }}" alt="{{ $user->photo }} image">
                                 <div class="flex-1 min-w-0 ms-4">
-                                    <p class="text-sm font-medium text-gray-900 truncate">{{ $user->name }}</p>
+                                    <a href="{{ route('profile.show', ['id' => $user->id ]) }}">
+                                        <p class="text-sm font-medium text-gray-900 truncate">{{ $user->name }}</p>
+                                    </a>
                                     <p class="text-sm text-gray-500 truncate">{{ $user->email }}</p>
                                 </div>
                             </div>

@@ -50,6 +50,7 @@
 
           <h1 class="text-3xl text-indigo-900 text-center mt-4 mb-10"><strong>エンジニア検索</strong></h1>
           <form action="{{ route('companies.search') }}" method="GET">
+
             <!-- フォームの内容 -->
             <div class="w-full items-center justify-center flex">
               {{-- <select id="言語の選択" name="language"

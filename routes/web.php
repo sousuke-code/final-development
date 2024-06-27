@@ -22,6 +22,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\UserViewController;
 use App\Models\Portfolios;
 
 /*
@@ -93,7 +94,7 @@ Route::get('/groups', [GroupChatController::class, 'index'])
 ->name('groups.index');
 
 // プロフィール詳細画面
-Route::get('/users/{user}', [UserController::class, 'show'])
+Route::get('/users/show/{id}', [UserController::class, 'show'])
 ->name('users.show');
 
 // プロフィール編集画面
@@ -118,6 +119,9 @@ Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.app
 // スカウト拒否
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
+//企業詳細
+Route::get('/companies/show/{id}',[UserController::class,'companiesshow'])
+->name('companies.show');
 
 
 
@@ -137,7 +141,7 @@ Route::put('/users/{user}', [UserController::class, 'update'])
 
 
 // 企業側情報編集画面表示
-Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+Route::get('/companies/edit/{id}',[CompanyController::class,'edit'])->name('companies.edit');
 
 // 企業側情報編集
 // Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
@@ -156,13 +160,21 @@ Route::get('/users.search', [UserController::class, 'search'])->name('users.sear
 
 
 Route::middleware('auth')->group(function () {
-  
- 
+
     Route::post('/study_logs/toggle', [StudyLogsController::class, 'toggle'])->name('study_logs.toggle');
     Route::get('/study_logs/chart', [StudyLogsController::class, 'getStudyTimes'])->name('study_logs.study_times');
     Route::post('/study_logs/daily_study', [StudyLogsController::class, 'getDailyStudyData'])->name('study_logs.daily_study');
       
 });
+
+
+
+//ユーザー詳細（他企業、他ユーザーから）
+Route::get('/profile/{id}/show', [UserViewController::class,'show'])->name('profile.show');
+
+//指定ユーザーの勉強勉強記録グラフ化
+Route::get('profile/{user_id}/chart', [UserViewController::class, 'getStudyTimes'])->name('study_logs.user');
+
 
 
 //GitHub認証連携
