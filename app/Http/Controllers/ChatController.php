@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class ChatController extends Controller
 {
 
-
+// 書き換える
     public function loadUserChats(){
         $userId = Auth::id();
         $companyId = 1;
-
         $chats = Chat::where('user_id', $userId)
                      ->where('company_id', $companyId)
                      ->get();

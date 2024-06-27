@@ -197,6 +197,6 @@ Route::middleware(['auth:company'])->group(function () {
 
     // ユーザーから送られてきたメッセージ企業側から通知
 // Route::get('/companies', [ChatController::class, 'index'])->name('chats.index');
-
+Route::get('/match-list', [UserController::class, 'showMatchList'])->name('match.list');
 require __DIR__.'/auth.php';
 
