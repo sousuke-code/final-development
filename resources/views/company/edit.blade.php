@@ -34,7 +34,7 @@
                                 {{-- 企業名 --}}
                                 <div class="flex flex-col">
                                     <label for="name" class="leading-loose">企業名</label>
-                                    <input type="text" id="name" name="name" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('name', $company->name) }}">
+                                    <input type="text" id="name" name="name" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" placehold="{{ ($company->name) }}">
                                 </div>
                                 
                                 {{-- 住所 --}}
@@ -46,7 +46,7 @@
                                 {{-- E-mail --}}
                                 <div class="flex flex-col">
                                     <label for="email" class="leading-loose">E-mail</label>
-                                    <input type="text" id="email" name="email" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('email', $company->email) }}">
+                                    <input type="text" id="email" name="email" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" placeholder="{{ ( $company->email) }}">
                                 </div>
                                 
                                 {{-- 給与 --}}
@@ -92,14 +92,21 @@
                                 {{-- 従業員数 --}}
                                 <div class="flex flex-col">
                                     <label for="employees" class="leading-loose">従業員数</label>
-                                    <input type="text" id="employees" name="employees" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('employees', $company->employees) }}">
+                                    {{-- <input type="text" id="employees" name="employees" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('employees', $company->employees) }}"> --}}
+                                    <select name="employees" id="">
+                                        <option value="~50人">~50人</option>
+                                        <option value="100人~200人">100人~200人</option>
+                                        <option value="200人~300人">200人~300人</option>
+                                        <option value="300人~400人">300人~400人</option>
+                                        <option value="400人~">400人~</option>
+                                    </select>
                                     
                                 </div>
                                 
                                 {{-- 従業員年齢層 --}}
                                 <div class="flex flex-col">
                                     <label for="age" class="leading-loose">従業員年齢層</label>
-                                    {{-- <input type="text" id="age" name="age" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('age', $company->age) }}"> --}}
+                                    
                                     <select name="age" id="">
                                         <option value="20代">20代</option>
                                         <option value="30代">30代</option>
@@ -110,7 +117,14 @@
                                 {{-- アクセス --}}
                                 <div class="flex flex-col">
                                     <label for="access" class="leading-loose">アクセス</label>
-                                    <input type="text" id="access" name="access" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-400" value="{{ old('access', $company->access) }}">
+                                    
+
+                                    <select name="access" id="">
+                                        <option value="駅近">駅近</option>
+                                        <option value="駅から5分">駅から5分</option>
+                                        <option value="駅から10分">駅から10分</option>
+                                        <option value="10分以上">10分</option>
+                                    </select>
                                 </div>
 
                                 {{-- 設立年月 --}}

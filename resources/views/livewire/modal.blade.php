@@ -1,7 +1,7 @@
 <div>
     {{-- Because she competes with no one, no one can compete with her. --}}
     <button wire:click="openModal()" type="button" class="bg-orange-300 text-xl text-white underline hover:no-underline inline-block rounded-full mt-12 px-8 py-2">
-        See messages
+        メッセージを見る
     </button>
     
     @if($showModal)
@@ -12,11 +12,11 @@
             <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
                 <div class="bg-white px-6 pt-5 pb-4">
                     <h3 class="text-xl leading-6 font-semibold text-gray-900">
-                       New Chat List
+                       新着メッセージ
                     </h3>
                     <div class="mt-4">
                         @if ($chats->isEmpty())
-                            <p class="text-gray-500">No messages found.</p>
+                            <p class="text-gray-500">メッセージが見つかりませんでした。</p>
                         @else
                             <ul class="space-y-2">
                                 @foreach ($chats as $chat)

@@ -13,13 +13,14 @@ class ChatController extends Controller
 
 // 書き換える
     public function loadUserChats(Request $request){
+        $user = Auth::user();
         $userId = Auth::id();
         $companyId = $request->input('id');
         $company = User::find($companyId);
         $chats = Chat::where('user_id', $userId)
                      ->where('company_id', $companyId)
                      ->get();
-        return view('user-chat-page', compact('chats', 'companyId', 'userId', 'company'));
+        return view('user-chat-page', compact('chats', 'companyId', 'userId', 'company', 'user'));
 
     }
 

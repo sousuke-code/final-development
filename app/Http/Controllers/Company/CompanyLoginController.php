@@ -22,7 +22,7 @@ class CompanyLoginController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::guard('company')->attempt($credentials)) {
-            return redirect()->route('company.dashboard')->with([
+            return redirect()->route('companies.index')->with([
                 'login_msg' => 'ログインしました。',
             ]);
         }
