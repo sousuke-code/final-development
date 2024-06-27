@@ -58,7 +58,7 @@
                 const values = Object.values(data);
 
                 new Chart(ctx, {
-                    type: 'pie', // 円グラフを指定
+                    type: 'pie', // 円グラフを指定です
                     data: {
                         labels: labels,
                         datasets: [{
@@ -169,6 +169,7 @@
 
     
 </script>
+
 
 
 @endsection

@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\ProgrammingLanguage;
 use App\Models\UserLanguages;
 use App\Models\Scout;
+use App\Models\Company;
 
 
 
@@ -62,6 +63,14 @@ class UserController extends Controller
         return view('users.profileedit',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
+
+        public function companiesshow($id) 
+        {
+            $company = Company::findOrFail($id);
+            return view('users.companydetail',['company'=>$company]);
+        }   
+    
+// スカウトの拒否d
     function update(Request $request, $id)
     {
 
@@ -84,6 +93,10 @@ class UserController extends Controller
 
     public function destroy($id)
 {
+ 
+
+    public function destroy($id){
+      
     // 現在ログインしているユーザーを取得
     $user = Auth::user();
 
@@ -99,12 +112,14 @@ class UserController extends Controller
 }
 
 // スカウトの拒否
+
 public function erase(Scout $scout)
 {
     $scout->delete();
 
     return redirect()->back()->with('success', 'スカウトを削除しました。');
 }
+
 
 // スカウトの認証
 public function approve($id)
@@ -123,23 +138,40 @@ public function approve($id)
 
 // 検索機能
 public function search(Request $request)
-    {
-        $languageId = $request->input('language');
+{
+    $languageId = $request->input('language');
+    $languages = ProgrammingLanguage::all();
     
-        $query = User::query();
-    
-  
-            $query->whereHas('userLanguages', function($q) use ($languageId) {
-                $q->whereHas('programmingLanguage', function($q) use ($languageId) {
-                    $q->where('id', $languageId);
-                });
-            });
+    $query = User::query();
 
-    
-        $users = $query->get();
-    
-        return view('users.search_results', ['users' => $users]);
+    if (!empty($languageId)) {
+        $query->whereHas('userLanguages', function($q) use ($languageId) {
+            $q->whereHas('programmingLanguage', function($q) use ($languageId) {
+                $q->where('id', $languageId);
+            });
+        });
     }
+
+    $users = $query->get();
+    return view('users.search', compact('languages', 'users'));
+
 
 }
 
+// ユーザコントローラー
+public function showMatchList()
+{
+    // ログイン中のユーザーを取得
+    $user = Auth::user();
+
+    // 条件に一致するscoutデータを取得し、関連するcompaniesテーブルのデータを取得
+    $matches = Scout::where('user_id', $user->id)
+                    ->where('condition', true)
+                    ->with('company') // Scoutモデルのcompanyリレーションを事前にロード
+                    ->get();
+
+    // ビューにデータを渡す
+    return view('users.match_list', compact('matches'));
+}
+
+}

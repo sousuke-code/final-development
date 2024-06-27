@@ -22,6 +22,8 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PortfolioAdminController;
+use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\UserViewController;
 use App\Models\Portfolios;
 
 /*
@@ -93,7 +95,7 @@ Route::get('/groups', [GroupChatController::class, 'index'])
 ->name('groups.index');
 
 // プロフィール詳細画面
-Route::get('/users/{user}', [UserController::class, 'show'])
+Route::get('/users/show/{id}', [UserController::class, 'show'])
 ->name('users.show');
 
 // プロフィール編集画面
@@ -123,19 +125,35 @@ Route::post('/scouts/{id}', [UserController::class, 'approve'])->name('scout.app
 // スカウト拒否
 Route::delete('/scouts/{scout}', [UserController::class, 'erase'])
 ->name('scouts.destroy');
+//企業詳細
+Route::get('/companies/show/{id}',[UserController::class,'companiesshow'])
+->name('companies.show');
+
+
 
  // 検索機能
  Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
 
+// プロフィール更新
+Route::put('/users/{user}', [UserController::class, 'update'])
+->name('users.update');
+
+
+
+
 
 
 // 企業側情報編集画面表示
-Route::get('/companies/{company}/edit',[CompanyController::class,'edit'])->name('companies.edit');
+Route::get('/companies/edit/{id}',[CompanyController::class,'edit'])->name('companies.edit');
+
 // 企業側情報編集
 // Route::put('/companies/{company}/update',[CompanyController::class,'update'])->name('companies.update');
 
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 
+// ユーザー側ユーザー検索
+
+Route::get('/users.search', [UserController::class, 'search'])->name('users.search');
 
 
 
@@ -145,13 +163,21 @@ Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edi
 
 
 Route::middleware('auth')->group(function () {
-  
- 
+
     Route::post('/study_logs/toggle', [StudyLogsController::class, 'toggle'])->name('study_logs.toggle');
     Route::get('/study_logs/chart', [StudyLogsController::class, 'getStudyTimes'])->name('study_logs.study_times');
     Route::post('/study_logs/daily_study', [StudyLogsController::class, 'getDailyStudyData'])->name('study_logs.daily_study');
       
 });
+
+
+
+//ユーザー詳細（他企業、他ユーザーから）
+Route::get('/profile/{id}/show', [UserViewController::class,'show'])->name('profile.show');
+
+//指定ユーザーの勉強勉強記録グラフ化
+Route::get('profile/{user_id}/chart', [UserViewController::class, 'getStudyTimes'])->name('study_logs.user');
+
 
 
 //GitHub認証連携
@@ -165,7 +191,7 @@ Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
 Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
 
 Route::middleware(['auth'])->group(function() { 
-    Route::get('/users/chat', [ChatController::class,'loadUserChats']);
+    Route::get('/users/chat', [ChatController::class,'loadUserChats'])->name('users.chat');
     Route::post('/users/chat/messages', [ChatController::class, 'Userstore']);
 });
 Route::middleware(['auth:company'])->group(function () {
@@ -180,10 +206,12 @@ Route::middleware(['auth:company'])->group(function () {
       Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
       // 検索機能
       Route::get('/companies/search', [CompanyController::class, 'search'])->name('companies.search');
+      
       Route::get('/companies/list', [ScoutController::class, 'index'])->name('companies.list');
 });
+
     // ユーザーから送られてきたメッセージ企業側から通知
 // Route::get('/companies', [ChatController::class, 'index'])->name('chats.index');
-
+Route::get('/match-list', [UserController::class, 'showMatchList'])->name('match.list');
 require __DIR__.'/auth.php';
 

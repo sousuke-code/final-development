@@ -55,19 +55,19 @@ class CompanyController extends Controller
         return view('company.search_results', ['users' => $users]);
     }
 // スカウト送信
-public function sendScout(Request $request, $userId)
-{
-    $companyId =Auth::guard('company')->id(); // 現在ログインしている会社の ID を取得
-    $condition = false; // 仮の条件として true を設定　後で三択にします
+        public function sendScout(Request $request, $userId)
+        {
+            $companyId =Auth::guard('company')->id(); // 現在ログインしている会社の ID を取得
+            $condition = false; // 仮の条件として true を設定　後で三択にします
 
-    Scout::create([
-        'user_id' => $userId,
-        'company_id' => $companyId,
-        'condition' => $condition,
-    ]);
+            Scout::create([
+                'user_id' => $userId,
+                'company_id' => $companyId,
+                'condition' => $condition,
+            ]);
 
-    return redirect()->back()->with('success', 'スカウトを送信しました。');
-}
+            return redirect()->back()->with('success', 'スカウトを送信しました。');
+        }
 
     public function update(Request $request, $id)
     {

@@ -39,7 +39,7 @@
         </div>
 
         <div class="bg-no-repeat bg-white-200 border border-black-300 rounded-xl w-5/12 ml-2 p-6" >
-          <p class="text-5xl text-indigo-900">mail box <br><strong>23</strong></p>
+          <p class="text-5xl text-indigo-900">メッセージ一覧 <br><strong>23</strong></p>
           
           @livewire('modal')
         </div>
@@ -50,6 +50,7 @@
 
           <h1 class="text-3xl text-indigo-900 text-center mt-4 mb-10"><strong>エンジニア検索</strong></h1>
           <form action="{{ route('companies.search') }}" method="GET">
+
             <!-- フォームの内容 -->
             <div class="w-full items-center justify-center flex">
               {{-- <select id="言語の選択" name="language"
@@ -78,16 +79,6 @@
 
           </div>
 
-{{-- 邪魔だったのでいったんコメントアウトしました↓ --}}
-
-          {{-- <div class="w-full mt-5 flex items-center justify-center">
-            <select id="ポートフォリオの選択" name="portfolio"
-            class="w-4/5 h-10 border-2 border-black-900 focus:outline-none focus:border-indigo-500 text-black-500 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-                <option value="All" selected>ポートフォリオ有</option>
-                <option value="Freemium">ポートフォリオ無</option>
-            </select>
-        </div>
-           --}}
           <div class="text-center mt-5">
             <button type="submit" class="bg-sky-500 text-white rounded-xl px-2 md:px-3 py-0 md:py-1 h-10">検索する</button>
           </div>

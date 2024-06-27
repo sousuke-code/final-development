@@ -14,50 +14,45 @@
         <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
     </svg>
 </button>
-    @if($showModal)
-        <div class="fixed z-10 inset-0 overflow-y-auto">
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>               
- 
-                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            offer
-                        </h3>
-                        <div class="mt-2">
-                            <p class="text-sm text-gray-500">
-                                @foreach ($scouts as $scout)
-                                <tr>
-                                    <td class="border px-4 py-2">{{ $scout->company->name }}からオファーがありました。</td>
-                                    <td class="border px-4 py-2">{{ $scout->created_at }}</td>
-                                    <td class="border px-4 py-2">
-                                        <form action="{{ route('scout.approve', ['id' => $scout->id]) }}" method="POST">
-                                            @csrf
-                                            @method('POST')
-                                            <button class="bg-green-500 text-white px-4 py-2 rounded">承認</button>
-                                        </form>
-                                        
-                                        {{-- <button class="bg-red-500 text-white px-4 py-2 rounded">削除</button> --}}
-                                        <form id="delete-form-{{ $scout->id }}" action="{{ route('scouts.destroy', $scout->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">削除</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <br>
-                                @endforeach
-                            </p>
+@if($showModal)
+    <div class="fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen px-4 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        オファー
+                    </h3>
+                    <div class="mt-2">
+                        @foreach ($scouts as $scout)
+                        <div class="border-b border-gray-200 py-2 flex justify-between items-center">
+                            <a href="{{ route('companies.show', ['id' => $scout->company->id ]) }}" class="text-blue-600 hover:underline">{{ $scout->company->name }}からオファーがありました。</a>
+                            <p class="text-sm text-gray-500">{{ $scout->created_at }}</p>
+                            <div class="flex space-x-2">
+                                <form action="{{ route('scout.approve', ['id' => $scout->id]) }}" method="POST">
+                                    @csrf
+                                    @method('POST')
+                                    <button class="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100">承認</button>
+                                </form>
+                                <form id="delete-form-{{ $scout->id }}" action="{{ route('scouts.destroy', $scout->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100">削除</button>
+                                </form>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button wire:click="closeModal()" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700">
-                            閉じる
-                        </button>
-                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button wire:click="closeModal()" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-200 sm:mt-0 sm:w-auto">
+                        閉じる
+                    </button>
                 </div>
             </div>
         </div>
-    @endif
+    </div>
+@endif
 </div>
 </div>

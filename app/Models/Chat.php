@@ -16,9 +16,11 @@ class Chat extends Model
         'company_id',
         'sender_type',
         'receiver_type',
+
     ];
     public function user()
     {
+
         return $this->belongsTo(User::class);
     }
 }
