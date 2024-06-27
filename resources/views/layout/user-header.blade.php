@@ -16,7 +16,7 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         
         @vite('resources/css/app.css')
-        {{-- モーダル --}}
+        {{-- モーダルです --}}
         @livewireStyles
     </head>
     <body >
