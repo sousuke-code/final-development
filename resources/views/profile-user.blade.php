@@ -36,7 +36,7 @@
           <div class="flex items-center justify-between">
             
 
-            <a href="{{ route('users.github')}}">
+            <a href="{{ route('github.information', ['id'=> $user->id])}}">
               <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                 github情報
               </button>
