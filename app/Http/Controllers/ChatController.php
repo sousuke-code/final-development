@@ -5,19 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Chat;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
 
 // 書き換える
-    public function loadUserChats(){
+    public function loadUserChats(Request $request){
         $userId = Auth::id();
-        $companyId = 1;
+        $companyId = $request->input('id');
+        $company = User::find($companyId);
         $chats = Chat::where('user_id', $userId)
                      ->where('company_id', $companyId)
                      ->get();
-        return view('user-chat-page', compact('chats', 'companyId', 'userId'));
+        return view('user-chat-page', compact('chats', 'companyId', 'userId', 'company'));
 
     }
 
