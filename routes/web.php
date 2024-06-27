@@ -187,6 +187,8 @@ Route::get('/oauth/github/callback', [GitHubController::class, 'callback']);
 
 Route::get('/users/github', [GitHubProfileController::class, 'index'])->name('users.github');
 
+Route::get('/github-profile/{id}', [GitHubProfileController::class, 'show'])->name('github.information');
+
 Route::middleware(['auth'])->group(function() { 
     Route::get('/users/chat', [ChatController::class,'loadUserChats'])->name('users.chat');
     Route::post('/users/chat/messages', [ChatController::class, 'Userstore']);
