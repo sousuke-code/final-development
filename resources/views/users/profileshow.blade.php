@@ -39,12 +39,17 @@
                 編集する
               </button>
             </a>
+            {{-- <a href="{{ route('users.edit', $user->id) }}">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+              削除する
+            </button> --}}
 
             <a href="{{ route('users.github')}}">
               <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                 github情報
               </button>
             </a>
+            
           </div>
         </form>
       </div>
@@ -62,7 +67,7 @@
       </button>
     </a>
   </div>
-
+  
   <!-- ポートフォリオのカード -->
   <div class="flex flex-wrap -mx-4">
     @foreach ($portfolios as $portofolio)
@@ -74,6 +79,15 @@
         <h2 class="text-gray-900 text-l font-semibold tracking-widest title-font mb-1">{{ $portofolio['title'] }}</h2>
         <h2 class="text-gray-600 title-font text-l font-medium">{{ $portofolio['description'] }}</h2>
       </div>
+      <div>
+        <a href="{{ route('portfolios.edit', ['id' => $portofolio->id]) }}">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            編集する
+          </button>
+        </a>
+        
+      </div>
+    
     </div>
     @endforeach
   </div>

@@ -52,6 +52,8 @@ class UserController extends Controller
 
     function edit($id)
     {
+        // $user = User::all();
+
         $user =  Auth::user();
         $userId = auth()->user()->id;
         $portfolios = Portfolios::where('user_id', $userId)->get();
@@ -75,21 +77,26 @@ class UserController extends Controller
         $user =  Auth::user();
         $userId = auth()->user()->id;
         $portfolios = Portfolios::where('user_id', $userId)->get();
-        // $user -> name = auth()->user()-> name;
-        // $user -> email = $request -> email;
-        // $user -> save();
+       
+       
 
         $user -> name = $request -> name;
         $user -> email = $request -> email;
         $user -> bio = $request -> bio;
+
+        
         $user -> save();
+        
 
         return view('users.profileshow',['portfolios'=>$portfolios, 'user'=> $user]);
     }
 
+    public function destroy($id)
+{
  
 
     public function destroy($id){
+      
     // 現在ログインしているユーザーを取得
     $user = Auth::user();
 

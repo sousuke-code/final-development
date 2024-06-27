@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PortfolioAdminController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\UserViewController;
 use App\Models\Portfolios;
@@ -106,12 +107,17 @@ Route::put('/users/{user}', [UserController::class, 'update'])
 ->name('users.update');
 
 // プロフィール削除
-Route::delete('/users/{user}', [UserController::class, 'destroy'])
-->name('users.destroy');
+// Route::delete('/users/{user}', [UserController::class, 'destroy'])
+// ->name('users.destroy');
 
-// Route::put('/users/{id}/delete-selected', [UserController::class, 'deleteselected'])
-// ->name('users.deleteselected');
 
+// ポートフォリオ編集画面
+Route::get('/portfolios/{id}/edit', [PortfolioAdminController::class, 'edit'])
+->name('portfolios.edit');
+
+// ポートフォリオ更新
+Route::put('/portfolios/update/{id}', [PortfolioAdminController::class, 'update'])
+->name('portfolios.update');
 
 
 // スカウト認証
@@ -125,6 +131,8 @@ Route::get('/companies/show/{id}',[UserController::class,'companiesshow'])
 
 
 
+ // 検索機能
+ Route::get('/users/search', [UserController::class, 'search'])->name('users.search.for.user');
 
 // プロフィール更新
 Route::put('/users/{user}', [UserController::class, 'update'])
@@ -132,11 +140,6 @@ Route::put('/users/{user}', [UserController::class, 'update'])
 
 
 
-
-
-// プロフィール更新
-Route::put('/users/{user}', [UserController::class, 'update'])
-->name('users.update');
 
 
 
