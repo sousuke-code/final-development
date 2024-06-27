@@ -151,8 +151,20 @@ public function search(Request $request)
 
 }
 
+// ユーザコントローラー
+public function showMatchList()
+{
+    // ログイン中のユーザーを取得
+    $user = Auth::user();
 
+    // 条件に一致するscoutデータを取得し、関連するcompaniesテーブルのデータを取得
+    $matches = Scout::where('user_id', $user->id)
+                    ->where('condition', true)
+                    ->with('company') // Scoutモデルのcompanyリレーションを事前にロード
+                    ->get();
 
-
+    // ビューにデータを渡す
+    return view('users.match_list', compact('matches'));
+}
 
 }
