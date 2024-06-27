@@ -3,104 +3,6 @@
 
 @section('content')
 
-{{-- <div class="container flex w-full  px-5 ">
-  
-
-    <div class="bg-green w-1/2">
-        
-              <div class="w-full max-w-xs justify-center flex text-center">
-                <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-center">
-
-                  <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      名前
-                    </label>
-                    <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
-                      {{ $user->name }}
-                    </div>
-                  </div>
-
-                  <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      メールアドレス
-                    </label>
-                    <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
-                      {{ $user->email }}
-                    </div>
-                  </div>
-
-                  <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                     自己紹介
-                    </label>
-                    <div class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
-                      {{ $user->bio }}
-                    </div>
-                    
-                  </div>
-
-                 
-
-                  <div class="flex items-center justify-between">
-
-                  <a href="{{ route('users.edit', $user->id) }}">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                      編集する
-                    </button>
-                    </a>
-
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                      削除する
-                    </button>
-                   
-
-                  </div>
-                </form>
-               
-              </div>
-
-           
-          
-        
-    </div>
-
-    <div class="bg-blue w-1/2">
-       
-
-          <canvas id="studyTimeChart" style="width: 100%; height: 100%;"></canvas>
-            
-            
-
-    </div>
-
-   
-     <div class="flex flex-wrap -m-4">
-
-      <a href="{{ route('portofolio.edit') }}">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-          ポートフォリオを作成する
-        </button>
-      </a>
-    </div>
-    <div class="w-full">
-      @foreach ($portfolios as $portofolio)
-     
-      <div class="lg:w-1/3 md:w-1/2 p-4">
-            <a class="block relative h-48 rounded overflow-hidden">
-              
-              <img src="{{ asset('storage/' . $portofolio->photo) }}" alt="{{ $portofolio->title }}" style="max-width: 100%;" class="object-cover object-center w-full h-full block">
-            </a>
-            <div class="mt-4">
-              <h2 class="text-gray-900 text-xs tracking-widest title-font mb-1">{{ $portofolio['title'] }}</h2>
-              <h2 class="text-gray-600 title-font text-lg font-medium">{{ $portofolio['description'] }}</h2>
-            </div>
-          </div>
-          @endforeach
-       </div>
-
-    </div>
-
-</div> --}}
 <div class="container mx-auto px-5">
   <!-- フォームとグラフを横並びに配置 -->
   <div class="flex justify-between mb-8">
@@ -137,9 +39,10 @@
                 編集する
               </button>
             </a>
+            {{-- <a href="{{ route('users.edit', $user->id) }}">
             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
               削除する
-            </button>
+            </button> --}}
           </div>
         </form>
       </div>
@@ -157,7 +60,7 @@
       </button>
     </a>
   </div>
-
+  
   <!-- ポートフォリオのカード -->
   <div class="flex flex-wrap -mx-4">
     @foreach ($portfolios as $portofolio)
@@ -169,6 +72,15 @@
         <h2 class="text-gray-900 text-l font-semibold tracking-widest title-font mb-1">{{ $portofolio['title'] }}</h2>
         <h2 class="text-gray-600 title-font text-l font-medium">{{ $portofolio['description'] }}</h2>
       </div>
+      <div>
+        <a href="{{ route('portfolios.edit', ['id' => $portofolio->id]) }}">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            編集する
+          </button>
+        </a>
+        
+      </div>
+    
     </div>
     @endforeach
   </div>
