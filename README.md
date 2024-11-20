@@ -1,4 +1,6 @@
 ## エンジニア向け勉強記録　＆　企業とのマッチングサイトです
+![image](https://github.com/user-attachments/assets/404afd3a-8960-4ebd-ac06-368ad4a60c06)
+
 
 ## 使用技術
 * PHP (Laravel)
