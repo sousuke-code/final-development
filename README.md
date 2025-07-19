@@ -38,6 +38,9 @@ https://www.notion.so/URL-7c511fa928de4bf388f012e245a9f325?pvs=4
  * ```composer install```
  * ```npm install ```
 
+2.envの作成
+.envを作成し、.env.exampleをコピーする
+
 2.データベースを設定して、マイグレーションを行う
  *  ``` php artisan migrate ```
 
